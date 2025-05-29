@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Add favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="description" content="Relax and find peace with our calming audio experiences. Choose from ambient music, nature sounds, and guided breathing sessions for stress relief and focus." />
+  <meta name="keywords" content="calm, relax, breathing, ambient music, nature sounds, stress relief, meditation, focus music, soothing audio" />
+  <meta name="author" content="Your Name or Brand" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Calm Breathe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9394843071535758"
+     crossorigin="anonymous"></script>
+  <style>
+  :root {
+    --bg: #1e1e2f;
+    --text: #eef1f5;
+    --accent: #98c1d9;
+    --calm: #3a506b;
+    --radius: 12px;
+  }
+  html {
+    height: 100%;
+    overflow: auto;
+  }
+  body {
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  .screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    min-height: 100vh; /* Changed from height */
+    width: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    justify-content: center;
+    padding: 2rem;
+    background-position: center;
+     background-size: cover;
+  }
+  .active {
+    display: flex;
+  }
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .option {
+    position: relative;
+    width: 20vw;
+    height: 20vw;
+    max-width: 220px;
+    max-height: 220px;
+    border-radius: 16px;
+    background-size: cover;
+    background-position: center;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+  }
+  .option.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 15px var(--accent), 0 0 30px rgba(152, 193, 217, 0.4);
+    transform: scale(1.05);
+    z-index: 5;
+  }
+  .option::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    transition: background 0.3s ease;
+    z-index: 1;
+  }
+  .option span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: 600;
+    font-size: 2rem;
+    text-align: center;
+    z-index: 2;
+    pointer-events: none;
+    transition: font-size 2s ease;
+  }
+  .option:hover::before {
+    background: rgba(0,0,0,0.7);
+  }
+  .option:hover span {
+    font-size: 2.5rem;
+  }
+  button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: var(--radius);
+    border: none;
+    background-color: var(--calm);
+    color: var(--text);
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  .circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center,var(--accent) 0%,var(--calm) 100%);
+    opacity: 0.8;
+    box-shadow: 0 0 30px rgba(152, 193, 217, 0.3);
+    transition: transform 4s ease-in-out, opacity 2s ease;
+    animation: gentlePulse 6s ease-in-out infinite;
+  }
+  @keyframes gentlePulse {
+    0%, 100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.1) rotate(180deg);
+      opacity: 0.9;
+      box-shadow: 0 0 50px rgba(152, 193, 217, 0.5);
+    }
+  }
+  #countdown {
+    position: absolute;
+    bottom: 2rem;
+    font-size: 2rem;
+    opacity: 0.3;
+  }
+  #doneMessage {
+    position: absolute;
+    font-size: 2rem;
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+  }
+  .show-done {
+    opacity: 1 !important;
+  }
+  #preCountdown {
+    position: absolute;
+    font-size: 5rem;
+    color: rgba(255, 255, 255, 0.3);
+    z-index: 10;
+    transition: opacity 0.5s ease;
+  }
+  #infoButton {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: rgba(255,255,255,0.4);
+    cursor: pointer;
+    z-index: 20;
+    user-select: none;
+    transition: color 0.3s;
+  }
+  #infoButton:hover {
+    color: rgba(255,255,255,0.7);
+  }
+  #infoModal {
+    display: flex; /* Ensure it's using flex for centering */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(30,30,47,0.9);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    box-sizing: border-box; /* Prevents padding from causing overflow */
+  }
+  #infoModal p {
+    color: var(--text);
+    font-size: 1.1rem;
+    max-width: 400px;
+    line-height: 1.6;
+  }
+  #infoContent {
+    position: relative;
+    background-color: rgba(255,255,255,0.05);
+    border-radius: var(--radius);
+    padding: 2rem;
+    width: 100%;             /* NEW */
+    max-width: 500px;
+    box-sizing: border-box;  /* Prevents overflow */
+  }
+  #infoContent a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  #closeInfo {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: rgba(255,255,255,0.5);
+  }
+  #closeInfo:hover {
+    color: rgba(255,255,255,0.8);
+  }
+  .volume-controls {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    opacity: 0.6;
+  }
+  .volume-controls input[type="range"] {
+    width: 120px;
+  }
+  #startButton {
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+    background-color: var(--accent);
+    color: var(--bg);
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    box-shadow: 0 0 20px rgba(152, 193, 217, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    animation: pulse 2s infinite;
+  }
+  #startButton:disabled {
+    background-color: #555;
+    color: #aaa;
+    box-shadow: none;
+    animation: none;
+    cursor: not-allowed;
+    transform: none;
+  }
+  #startButton:hover {
+    transform: scale(1.05);
+    background-color: #b5d9ec;
+    box-shadow: 0 0 25px rgba(152, 193, 217, 0.7);
+  }
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 20px rgba(152, 193, 217, 0.4);
+    }
+    50% {
+      transform: scale(1.03);
+      box-shadow: 0 0 30px rgba(152, 193, 217, 0.6);
+    }
+  }
+  #backgroundVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  #waveCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  .circle {
+    /* Keep your existing styles */
+    position: relative;
+    z-index: 2;
+    /* Higher than canvas */
+    transform: translateZ(0);
+    /* Force hardware acceleration */
+  }
+  .circle {
+    /* Keep existing styles */
+    animation: strongPulse 10s ease-in-out infinite;
+  }
+  @keyframes strongPulse {
+    0%, 100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 0.8;
+      box-shadow: 0 0 30px rgba(152, 193, 217, 0.3);
+    }
+    50% {
+      transform: scale(1.4) rotate(180deg);
+      /* Increased from 1.1 to 1.4 */
+      opacity: 1;
+      box-shadow: 0 0 60px rgba(152, 193, 217, 0.6);
+      /* Stronger glow */
+    }
+  }
+  /* Add mobile media queries */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.5rem;
+      margin: 0.5rem 0;
+    }
+
+    .option {
+      width: 27vw;
+      height: 27vw;
+      min-width: 100px;
+      min-height: 100px;
+    }
+
+    #startButton {
+      padding: 1rem;
+      font-size: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .volume-controls {
+      bottom: 5rem;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+  /* Hide volume controls by default */
+    .volume-controls {
+      display: none;
+    }
+    /* New style for endless option */
+    .endless-option {
+      background-image: url('images/infinity.jpg') !important;
+    }
+    .option.endless-option {
+      background-image: url('images/clock.jpg') !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="welcome" class="screen active">
+    <h1>What’s your intention?</h1>
+    <div class="options" id="moodOptions">
+      <div class="option" data-value="relax" style="background-image: url('images/relax.jpg')"><span>Relax</span></div>
+      <div class="option" data-value="focus" style="background-image: url('images/focus.jpg')"><span>Focus</span></div>
+      <div class="option" data-value="sleep" style="background-image: url('images/sleep.jpg')"><span>Sleep</span></div>
+      <div class="option" data-value="silent" style="background-image: url('images/silent.jpg')"><span>Silent</span></div>
+    </div>
+
+    <h1>Choose your environment</h1>
+    <div class="options" id="sceneOptions">
+      <div class="option" data-value="ocean" style="background-image: url('images/ocean.jpg')"><span>Ocean</span></div>
+      <div class="option" data-value="forest" style="background-image: url('images/forest.jpg')"><span>Forest</span></div>
+      <div class="option" data-value="stars" style="background-image: url('images/stars.jpg')"><span>Stars</span></div>
+      <div class="option" data-value="campfire" style="background-image: url('images/campfire.jpg')"><span>Campfire</span></div>
+      <div class="option" data-value="clouds" style="background-image: url('images/clouds.jpg')"><span>Rain</span></div>
+      <div class="option" data-value="silent" style="background-image: url('images/silent.jpg')"><span>Silent</span></div>
+    </div>
+
+    <h1>How much time do you have?</h1>
+    <div class="options" id="durationOptions">
+      <div class="option" data-value="1" style="background-image: url('images/clock.jpg')"><span>1 min</span></div>
+      <div class="option" data-value="5" style="background-image: url('images/clock.jpg')"><span>5 min</span></div>
+      <div class="option" data-value="10" style="background-image: url('images/clock.jpg')"><span>10 min</span></div>
+      <div class="option" data-value="15" style="background-image: url('images/clock.jpg')"><span>15 min</span></div>
+      <div class="option" data-value="30" style="background-image: url('images/clock.jpg')"><span>30 min</span></div>
+      <div class="option endless-option" data-value="endless" style="background-image: url('images/clock.jpg')"><span>endless</span></div>
+    </div>
+
+    <button id="startButton" disabled>Begin Session</button>
+  </div>
+
+  <div id="session" class="screen">
+    <canvas id="waveCanvas"></canvas>
+    <div class="circle" id="breath"></div>
+    <p id="countdown"></p>
+    <div id="doneMessage">Great job. You're done.</div>
+    <div id="preCountdown"></div>
+    <!--<div class="volume-controls">
+      <label>Intention Volume <input type="range" min="0" max="1" step="0.01" id="intentionVol" value="0.3"></label>
+      <label>Environment Volume <input type="range" min="0" max="1" step="0.01" id="sceneVol" value="1"></label>
+    </div>-->
+  </div>
+
+  <div id="infoButton">ⓘ</div>
+
+  <div id="infoModal">
+    <div id="infoContent">
+      <span id="closeInfo">&times;</span>
+      <h1>Welcome</h1><br><br>
+      <p>
+        This space is for you — to breathe, slow down, and reconnect.<br><br>
+        It’s completely free to use. No tracking. Just calm.<br><br>
+        If you find it helpful and want to support it, you can<br>
+        <a href="https://www.buymeacoffee.com/atlassa" target="_blank">buy me a coffee ☕</a><br><br>
+        Take a deep breath. You’re doing great.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const patterns = {
+      relax: [4000, 4000, 6000],
+      focus: [4000, 2000, 4000],
+      sleep: [4000, 7000, 8000],
+      silent: [4000, 4000, 6000]
+    };
+
+    const startLabels = {
+      relax: ['Enter Calm', 'Relax Now', 'Find Stillness'],
+      focus: ['Get Focused', 'Center Yourself', 'Be Present'],
+      sleep: ['Begin Unwinding', 'Ease into Sleep', 'Drift Off'],
+      silent: ['Silent Intention', 'Peaceful Breathing', 'Quiet Mind']
+    };
+    patterns.endless = patterns.relax;
+    startLabels.endless = ['Endless Calm', 'Timeless Session', 'Unlimited Peace'];
+
+    const moodOptions = document.querySelector('#moodOptions');
+    const sceneOptions = document.querySelector('#sceneOptions');
+    const durationOptions = document.querySelector('#durationOptions');
+    const startButton = document.getElementById('startButton');
+    const breath = document.getElementById('breath');
+    const countdown = document.getElementById('countdown');
+    const preCountdown = document.getElementById('preCountdown');
+    const doneMessage = document.getElementById('doneMessage');
+    const sessionScreen = document.getElementById('session');
+    const welcomeScreen = document.getElementById('welcome');
+    const infoButton = document.getElementById('infoButton');
+    const infoModal = document.getElementById('infoModal');
+    const closeInfo = document.getElementById('closeInfo');
+
+    let mood, scene, duration;
+    let endTime, interval;
+    let intentionAudio = new Audio();
+    let sceneAudio = new Audio();
+    let hoverAudio = new Audio();
+    let selectedAudio = new Audio('sounds/selected.mp3');
+    
+    document.querySelectorAll('.option').forEach(option => {
+      option.addEventListener('mouseenter', () => {
+        const group = option.parentElement.id;
+        let audioPath;
+
+        if (group === 'moodOptions') {
+          audioPath = `sounds/${option.dataset.value}.mp3`;
+        } else if (group === 'sceneOptions') {
+          audioPath = `sounds/${option.dataset.value}.mp3`;
+        } else if (group === 'durationOptions') {
+          audioPath = `sounds/ticking.mp3`;
+        }
+
+        if (audioPath) {
+          hoverAudio.src = audioPath;
+          hoverAudio.volume = 0.6;
+          hoverAudio.currentTime = 0;
+          hoverAudio.play();
+        }
+      });
+      option.addEventListener('mouseleave', () => {
+        hoverAudio.pause();
+        hoverAudio.currentTime = 0;
+      });
+
+      option.addEventListener('click', () => {
+        selectedAudio.currentTime = 0;
+        selectedAudio.play();
+      });
+    });
+
+    document.querySelectorAll('.options').forEach(group => {
+      group.addEventListener('click', e => {
+        if (!e.target.closest('.option')) return;
+        const selected = e.target.closest('.option');
+        group.querySelectorAll('.option').forEach(opt => opt.classList.remove('active'));
+        selected.classList.add('active');
+        updateStartButton();
+      });
+    });
+
+    function updateStartButton() {
+      const selectedMood = document.querySelector('#moodOptions .active')?.dataset.value;
+      const selectedScene = document.querySelector('#sceneOptions .active')?.dataset.value;
+      const selectedDuration = document.querySelector('#durationOptions .active')?.dataset.value;
+
+      if (selectedMood && selectedScene && selectedDuration) {
+        startButton.disabled = false;
+        const labels = startLabels[selectedMood];
+        const randomLabel = labels[Math.floor(Math.random() * labels.length)];
+        startButton.textContent = randomLabel;
+      } else {
+        startButton.disabled = true;
+        startButton.textContent = "Begin Session";
+      }
+    }
+
+    function startSession() {
+  const startSound = new Audio('sounds/start.mp3');
+  startSound.play();
+  mood = document.querySelector('#moodOptions .active')?.dataset.value;
+  scene = document.querySelector('#sceneOptions .active')?.dataset.value;
+  const durationValue = document.querySelector('#durationOptions .active')?.dataset.value;
+
+  if (!mood || !scene || !durationValue) {
+    alert("Please make all selections.");
+    return;
+  }
+
+  // Handle endless duration
+  if (durationValue === 'endless') {
+    duration = 0; // Special value for endless session
+  } else {
+    duration = parseInt(durationValue);
+  }
+
+  // Add these variables at the top of your script
+  let canvas, ctx;
+  let waves = [];
+  let animationFrameId;
+
+  // Add this Wave class
+  class Wave {
+    constructor(amp, freq, phase, color) {
+      this.amp = amp;
+      this.freq = freq;
+      this.phase = phase;
+      this.color = color;
+      this.offset = 0;
+    }
+
+    update() {
+      this.offset += 0.002;
+      this.phase += 0.005;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.moveTo(0, canvas.height/2);
+      
+      for(let x = 0; x < canvas.width; x++) {
+        const y = canvas.height/2 + 
+          Math.sin(x * this.freq + this.phase) * this.amp * Math.sin(this.offset) +
+          Math.cos(x * 0.005 + this.phase) * this.amp * 0.5;
+        ctx.lineTo(x, y);
+      }
+      
+      ctx.strokeStyle = this.color;
+      ctx.lineWidth = 5;
+      ctx.stroke();
+    }
+  }
+
+  // Add this initialization in startSession function
+  canvas = document.getElementById('waveCanvas');
+  ctx = canvas.getContext('2d');
+
+  // Set canvas size
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  // Create waves with calm colors
+  waves = [
+    new Wave(60, 0.01, 0, 'hsla(200, 60%, 30%, 0.4)'),  // Increased amplitude
+    new Wave(70, 0.005, Math.PI/2, 'hsla(180, 40%, 40%, 0.3)'),
+    new Wave(80, 0.002, Math.PI, 'hsla(220, 50%, 35%, 0.2)')
+  ];
+
+  function animate() {
+    ctx.fillStyle = '#1e1e2f'; // Match your background color
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    waves.forEach(wave => {
+      wave.update();
+      wave.draw();
+    });
+    
+    animationFrameId = requestAnimationFrame(animate);
+  }
+
+  animate();
+  welcomeScreen.classList.remove('active');
+  sessionScreen.classList.add('active');
+
+  // Start pre-countdown
+  let countdownVal = 3;
+  preCountdown.textContent = countdownVal;
+  playSessionSounds(); // Play audio immediately
+  const countdownInterval = setInterval(() => {
+    countdownVal--;
+    if (countdownVal === 0) {
+      preCountdown.textContent = '';
+      clearInterval(countdownInterval);
+      const start = Date.now();
+      
+      // Handle endless duration
+      if (duration === 0) {
+        endTime = Infinity; // Never ends
+        countdown.textContent = ""; // Show infinity symbol
+      } else {
+        endTime = start + duration * 60 * 1000;
+      }
+      
+      breathe(patterns[mood]);
+    } else {
+      preCountdown.textContent = countdownVal;
+    }
+  }, 1000);
+}
+
+    function playSessionSounds() {
+      if (mood !== 'silent') {
+        intentionAudio.src = `sounds/${mood}.mp3`;
+        intentionAudio.loop = true;
+        intentionAudio.volume = 0.3;
+        intentionAudio.play();
+      }
+      
+      // Only play scene sound if not silent
+      if (scene !== 'silent') {
+        sceneAudio.src = `sounds/${scene}.mp3`;
+        sceneAudio.loop = true;
+        sceneAudio.volume = 1;
+        sceneAudio.play();
+      }
+      //const targetIntentionVol = parseFloat(document.getElementById('intentionVol').value);
+      //const targetSceneVol = parseFloat(document.getElementById('sceneVol').value);
+
+      let fadeDuration = 3000;
+      let fadeSteps = 30;
+      let step = 0;
+
+      let fadeInterval = setInterval(() => {
+        step++;
+        let progress = step / fadeSteps;
+        intentionAudio.volume = targetIntentionVol * progress;
+        sceneAudio.volume = targetSceneVol * progress;
+
+        if (step >= fadeSteps) clearInterval(fadeInterval);
+      }, fadeDuration / fadeSteps);
+      function setupCrossfade(audio, volumeGetter) {
+  const clone = new Audio(audio.src);
+  clone.volume = 0;
+  clone.loop = false;
+
+  audio.addEventListener('ended', () => {
+    audio.currentTime = 0;
+    audio.play();
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    if (audio.duration - audio.currentTime <= 2 && !clone.playing) {
+      clone.currentTime = 0;
+      clone.volume = 0;
+      clone.play();
+      clone.playing = true;
+
+      let fadeSteps = 20;
+      let step = 0;
+      let interval = setInterval(() => {
+        step++;
+        let progress = step / fadeSteps;
+        clone.volume = volumeGetter() * progress;
+        audio.volume = volumeGetter() * (1 - progress);
+
+        if (step >= fadeSteps) {
+          clearInterval(interval);
+          [audio, clone] = [clone, audio]; // Swap references
+          clone.playing = false;
+        }
+      }, 100);
+    }
+  });
+}
+
+setupCrossfade(intentionAudio, () => parseFloat(document.getElementById('intentionVol').value));
+setupCrossfade(sceneAudio, () => parseFloat(document.getElementById('sceneVol').value));
+    }
+
+
+
+    function breathe([inTime, holdTime, outTime]) {
+      function cycle() {
+        if (duration !== 0 && Date.now() >= endTime) return endSession();
+        breath.style.transition = `transform ${inTime}ms ease-in-out`;
+        breath.style.transform = 'scale(1.3)';
+        setTimeout(() => {
+          breath.style.transition = `transform ${holdTime}ms linear`;
+          breath.style.transform = 'scale(1.3)';
+          setTimeout(() => {
+            breath.style.transition = `transform ${outTime}ms ease-in-out`;
+            breath.style.transform = 'scale(1)';
+            setTimeout(() => cycle(), outTime);
+          }, holdTime);
+        }, inTime);
+      }
+
+      cycle();
+
+      if (duration !== 0) {
+        interval = setInterval(() => {
+          const remaining = Math.max(0, endTime - Date.now());
+          const minutes = Math.floor(remaining / 60000);
+          const seconds = Math.floor((remaining % 60000) / 1000);
+          countdown.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }, 1000);
+      }
+    }
+
+    function endSession() {
+      cancelAnimationFrame(animationFrameId);
+      if (canvas) ctx.clearRect(0, 0, canvas.width, canvas.height);
+      clearInterval(interval);
+      intentionAudio.pause();
+      sceneAudio.pause();
+      intentionAudio.currentTime = 0;
+      sceneAudio.currentTime = 0;
+      breath.style.display = 'none';
+      countdown.style.display = 'none';
+      doneMessage.classList.add('show-done');
+      
+      setTimeout(() => {
+        doneMessage.classList.remove('show-done');
+        breath.style.display = 'flex';
+        countdown.style.display = 'block';
+        sessionScreen.classList.remove('active');
+        welcomeScreen.classList.add('active');
+        updateStartButton();
+      }, 8000);
+    }
+    window.addEventListener('resize', () => {
+      if (canvas) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+    });
+
+    startButton.addEventListener('click', startSession);
+
+    infoButton.addEventListener('click', () => infoModal.style.display = 'flex');
+    closeInfo.addEventListener('click', () => infoModal.style.display = 'none');
+    infoModal.addEventListener('click', e => { if (e.target === infoModal) infoModal.style.display = 'none'; });
+  </script>
+  
+</body>
+</html>
