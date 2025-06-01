@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Add favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="description" content="Relax and find peace with our calming audio experiences. Choose from ambient music, nature sounds, and guided breathing sessions for stress relief and focus." />
   <meta name="keywords" content="calm, relax, breathing, ambient music, nature sounds, stress relief, meditation, focus music, soothing audio" />
   <meta name="author" content="Your Name or Brand" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-adsense-account" content="ca-pub-9394843071535758">
   
   <title>Calm Breathe</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9394843071535758"
-     crossorigin="anonymous"></script>
+      crossorigin="anonymous"></script>
   <style>
   :root {
     --bg: #1e1e2f;
@@ -44,15 +42,14 @@
     display: none;
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
-    min-height: 100vh; /* Changed from height */
+    min-height: 100vh; 
     width: 100%;
     box-sizing: border-box;
-    overflow-y: auto;
+    overflow-y: auto; 
     justify-content: center;
-    padding: 2rem;
+    padding: 2rem; 
     background-position: center;
-     background-size: cover;
+    background-size: cover;
   }
   .active {
     display: flex;
@@ -60,6 +57,7 @@
   h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
+    text-align: center;
   }
   .options {
     display: flex;
@@ -107,15 +105,15 @@
     text-align: center;
     z-index: 2;
     pointer-events: none;
-    transition: font-size 2s ease;
+    transition: font-size 0.3s ease; 
   }
   .option:hover::before {
     background: rgba(0,0,0,0.7);
   }
   .option:hover span {
-    font-size: 2.5rem;
+    font-size: 2.2rem; 
   }
-  button {
+  button { 
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
     border-radius: var(--radius);
@@ -132,40 +130,46 @@
     background: radial-gradient(circle at center,var(--accent) 0%,var(--calm) 100%);
     opacity: 0.8;
     box-shadow: 0 0 30px rgba(152, 193, 217, 0.3);
-    transition: transform 4s ease-in-out, opacity 2s ease;
-    animation: gentlePulse 6s ease-in-out infinite;
+    transition: transform 4s ease-in-out, opacity 2s ease; 
+    position: relative; 
+    z-index: 2; 
+    transform: translateZ(0); 
+    animation: strongPulse 10s ease-in-out infinite; 
   }
-  @keyframes gentlePulse {
+  @keyframes strongPulse { 
     0%, 100% {
       transform: scale(1) rotate(0deg);
       opacity: 0.8;
+      box-shadow: 0 0 30px rgba(152, 193, 217, 0.3);
     }
     50% {
-      transform: scale(1.1) rotate(180deg);
-      opacity: 0.9;
-      box-shadow: 0 0 50px rgba(152, 193, 217, 0.5);
+      transform: scale(1.4) rotate(180deg); 
+      opacity: 1;
+      box-shadow: 0 0 60px rgba(152, 193, 217, 0.6);
     }
   }
   #countdown {
     position: absolute;
-    bottom: 2rem;
+    bottom: 2rem; 
     font-size: 2rem;
-    opacity: 0.3;
+    opacity: 0.7; 
+    z-index: 3; 
   }
   #doneMessage {
-    position: absolute;
+    position: absolute; 
     font-size: 2rem;
     color: var(--accent);
     opacity: 0;
     transition: opacity 2s ease-in-out;
+    z-index: 4;
   }
   .show-done {
     opacity: 1 !important;
   }
   #preCountdown {
-    position: absolute;
+    position: absolute; 
     font-size: 5rem;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.5); 
     z-index: 10;
     transition: opacity 0.5s ease;
   }
@@ -176,7 +180,7 @@
     font-size: 1.5rem;
     color: rgba(255,255,255,0.4);
     cursor: pointer;
-    z-index: 20;
+    z-index: 1000; /* Ensure info button is above modal when modal is hidden if ever needed */
     user-select: none;
     transition: color 0.3s;
   }
@@ -184,7 +188,7 @@
     color: rgba(255,255,255,0.7);
   }
   #infoModal {
-    display: flex; /* Ensure it's using flex for centering */
+    display: flex; /* MODIFIED: Visible by default */
     position: fixed;
     top: 0;
     left: 0;
@@ -196,27 +200,33 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: 2rem; 
+    box-sizing: border-box;
+  }
+  #infoContent { 
+    position: relative;
+    background-color: rgba(30,30,47,0.95); 
+    border: 1px solid rgba(152, 193, 217, 0.2);
+    border-radius: var(--radius);
     padding: 2rem;
-    box-sizing: border-box; /* Prevents padding from causing overflow */
+    width: 100%;    
+    max-width: 500px; 
+    box-sizing: border-box;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
   }
   #infoModal p {
     color: var(--text);
     font-size: 1.1rem;
-    max-width: 400px;
+    max-width: 400px; 
     line-height: 1.6;
-  }
-  #infoContent {
-    position: relative;
-    background-color: rgba(255,255,255,0.05);
-    border-radius: var(--radius);
-    padding: 2rem;
-    width: 100%;             /* NEW */
-    max-width: 500px;
-    box-sizing: border-box;  /* Prevents overflow */
+    margin: 0 auto; 
   }
   #infoContent a {
     color: var(--accent);
     text-decoration: none;
+  }
+  #infoContent a:hover {
+    text-decoration: underline;
   }
   #closeInfo {
     position: absolute;
@@ -229,15 +239,17 @@
   #closeInfo:hover {
     color: rgba(255,255,255,0.8);
   }
-  .volume-controls {
+  .volume-controls { 
+    display: none; 
     position: absolute;
     bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
-    display: flex;
+    /* display: flex; /* Un-comment to show */
     gap: 2rem;
     align-items: center;
     opacity: 0.6;
+    z-index: 3; 
   }
   .volume-controls input[type="range"] {
     width: 120px;
@@ -262,12 +274,12 @@
     cursor: not-allowed;
     transform: none;
   }
-  #startButton:hover {
+  #startButton:not(:disabled):hover { 
     transform: scale(1.05);
-    background-color: #b5d9ec;
+    background-color: #b5d9ec; 
     box-shadow: 0 0 25px rgba(152, 193, 217, 0.7);
   }
-  @keyframes pulse {
+  @keyframes pulse { 
     0%, 100% {
       transform: scale(1);
       box-shadow: 0 0 20px rgba(152, 193, 217, 0.4);
@@ -277,14 +289,14 @@
       box-shadow: 0 0 30px rgba(152, 193, 217, 0.6);
     }
   }
-  #backgroundVideo {
+  #backgroundVideo { 
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1;
+    z-index: -1; 
   }
   #waveCanvas {
     position: absolute;
@@ -292,74 +304,87 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: -1; 
   }
-  .circle {
-    /* Keep your existing styles */
-    position: relative;
-    z-index: 2;
-    /* Higher than canvas */
-    transform: translateZ(0);
-    /* Force hardware acceleration */
+  
+  .option.endless-option {
+      background-image: url('images/silent.jpg') !important;
   }
-  .circle {
-    /* Keep existing styles */
-    animation: strongPulse 10s ease-in-out infinite;
-  }
-  @keyframes strongPulse {
-    0%, 100% {
-      transform: scale(1) rotate(0deg);
-      opacity: 0.8;
-      box-shadow: 0 0 30px rgba(152, 193, 217, 0.3);
-    }
-    50% {
-      transform: scale(1.4) rotate(180deg);
-      /* Increased from 1.1 to 1.4 */
-      opacity: 1;
-      box-shadow: 0 0 60px rgba(152, 193, 217, 0.6);
-      /* Stronger glow */
-    }
-  }
-  /* Add mobile media queries */
+
   @media (max-width: 768px) {
     h1 {
-      font-size: 1.5rem;
-      margin: 0.5rem 0;
+      font-size: 1.5rem; 
+      margin-top: 1rem; 
+      margin-bottom: 0.8rem;
     }
-
+    .options {
+      gap: 0.8rem; 
+      margin-bottom: 1.5rem;
+    }
     .option {
-      width: 27vw;
+      width: 27vw; 
       height: 27vw;
-      min-width: 100px;
-      min-height: 100px;
+      min-width: 90px; 
+      min-height: 90px;
+      border-radius: 12px; 
     }
-
+    .option span {
+      font-size: 1.5rem; 
+    }
+    .option:hover span {
+      font-size: 1.7rem;
+    }
     #startButton {
-      padding: 1rem;
+      padding: 0.8rem 1.5rem; 
       font-size: 1.2rem;
-      margin: 1rem 0;
+      margin-top: 1.5rem; 
     }
-
-    .volume-controls {
-      bottom: 5rem;
+    .volume-controls { 
+      bottom: 5rem; 
       flex-direction: column;
       gap: 1rem;
     }
+    #preCountdown {
+      font-size: 4rem; 
+    }
+    #countdown {
+      font-size: 1.5rem; 
+    }
+    #doneMessage {
+      font-size: 1.5rem; 
+    }
+    #infoContent {
+        padding: 1.5rem; 
+    }
+    #infoModal p {
+        font-size: 1rem; 
+    }
   }
-  /* Hide volume controls by default */
-    .volume-controls {
-      display: none;
+  @media (max-width: 480px) {
+    h1 {
+        font-size: 1.3rem;
     }
-    /* New style for endless option */
-    .endless-option {
-      background-image: url('images/infinity.jpg') !important;
+    .option {
+        width: 35vw; 
+        height: 35vw;
+        min-width: 80px;
+        min-height: 80px;
     }
-    .option.endless-option {
-      background-image: url('images/clock.jpg') !important;
+    .option span {
+        font-size: 1.2rem;
     }
+    .option:hover span {
+        font-size: 1.4rem;
+    }
+    #startButton {
+        padding: 0.7rem 1.2rem;
+        font-size: 1.1rem;
+    }
+  }
   </style>
 </head>
 <body>
+
   <div id="welcome" class="screen active">
     <h1>What’s your intention?</h1>
     <div class="options" id="moodOptions">
@@ -386,7 +411,7 @@
       <div class="option" data-value="10" style="background-image: url('images/clock.jpg')"><span>10 min</span></div>
       <div class="option" data-value="15" style="background-image: url('images/clock.jpg')"><span>15 min</span></div>
       <div class="option" data-value="30" style="background-image: url('images/clock.jpg')"><span>30 min</span></div>
-      <div class="option endless-option" data-value="endless" style="background-image: url('images/clock.jpg')"><span>endless</span></div>
+      <div class="option endless-option" data-value="endless" style="background-image: url('images/clock.jpg')"><span>Endless</span></div>
     </div>
 
     <button id="startButton" disabled>Begin Session</button>
@@ -398,35 +423,31 @@
     <p id="countdown"></p>
     <div id="doneMessage">Great job. You're done.</div>
     <div id="preCountdown"></div>
-    <!--<div class="volume-controls">
-      <label>Intention Volume <input type="range" min="0" max="1" step="0.01" id="intentionVol" value="0.3"></label>
-      <label>Environment Volume <input type="range" min="0" max="1" step="0.01" id="sceneVol" value="1"></label>
-    </div>-->
   </div>
 
   <div id="infoButton">ⓘ</div>
 
-  <div id="infoModal">
-    <div id="infoContent">
+  <div id="infoModal"> <div id="infoContent">
       <span id="closeInfo">&times;</span>
       <h1>Welcome</h1><br><br>
       <p>
         This space is for you — to breathe, slow down, and reconnect.<br><br>
         It’s completely free to use. No tracking. Just calm.<br><br>
         If you find it helpful and want to support it, you can<br>
-        <a href="https://www.buymeacoffee.com/atlassa" target="_blank">buy me a coffee ☕</a><br><br>
-        Take a deep breath. You’re doing great!
+        <a href="https://www.buymeacoffee.com/atlassa" target="_blank" rel="noopener noreferrer">buy me a coffee ☕</a><br><br>
+        Take a deep breath. You’re doing great.
       </p>
     </div>
   </div>
 
   <script>
     const patterns = {
-      relax: [4000, 4000, 6000],
+      relax: [4000, 4000, 6000], 
       focus: [4000, 2000, 4000],
       sleep: [4000, 7000, 8000],
-      silent: [4000, 4000, 6000]
+      silent: [4000, 4000, 6000] 
     };
+    patterns.endless = patterns.relax; 
 
     const startLabels = {
       relax: ['Enter Calm', 'Relax Now', 'Find Stillness'],
@@ -434,12 +455,11 @@
       sleep: ['Begin Unwinding', 'Ease into Sleep', 'Drift Off'],
       silent: ['Silent Intention', 'Peaceful Breathing', 'Quiet Mind']
     };
-    patterns.endless = patterns.relax;
     startLabels.endless = ['Endless Calm', 'Timeless Session', 'Unlimited Peace'];
 
-    const moodOptions = document.querySelector('#moodOptions');
-    const sceneOptions = document.querySelector('#sceneOptions');
-    const durationOptions = document.querySelector('#durationOptions');
+    const moodOptionsEl = document.querySelector('#moodOptions');
+    const sceneOptionsEl = document.querySelector('#sceneOptions');
+    const durationOptionsEl = document.querySelector('#durationOptions');
     const startButton = document.getElementById('startButton');
     const breath = document.getElementById('breath');
     const countdown = document.getElementById('countdown');
@@ -452,12 +472,20 @@
     const closeInfo = document.getElementById('closeInfo');
 
     let mood, scene, duration;
-    let endTime, interval;
+    let endTime, sessionInterval; 
+    
     let intentionAudio = new Audio();
     let sceneAudio = new Audio();
     let hoverAudio = new Audio();
-    let selectedAudio = new Audio('sounds/selected.mp3');
-    
+    let selectedAudio = new Audio('sounds/selected.mp3'); 
+
+    let allowAudioRestart = true;
+
+    let canvas, ctx;
+    let waves = [];
+    let animationFrameId;
+
+
     document.querySelectorAll('.option').forEach(option => {
       option.addEventListener('mouseenter', () => {
         const group = option.parentElement.id;
@@ -468,14 +496,15 @@
         } else if (group === 'sceneOptions') {
           audioPath = `sounds/${option.dataset.value}.mp3`;
         } else if (group === 'durationOptions') {
-          audioPath = `sounds/ticking.mp3`;
+          audioPath = `sounds/ticking.mp3`; 
         }
 
         if (audioPath) {
           hoverAudio.src = audioPath;
           hoverAudio.volume = 0.6;
           hoverAudio.currentTime = 0;
-          hoverAudio.play();
+          const playPromise = hoverAudio.play();
+          if (playPromise) playPromise.catch(e => {}); // Silently catch hover play error
         }
       });
       option.addEventListener('mouseleave', () => {
@@ -485,16 +514,18 @@
 
       option.addEventListener('click', () => {
         selectedAudio.currentTime = 0;
-        selectedAudio.play();
+        const playPromise = selectedAudio.play();
+        if (playPromise) playPromise.catch(e => {}); // Silently catch select play error
       });
     });
 
     document.querySelectorAll('.options').forEach(group => {
       group.addEventListener('click', e => {
-        if (!e.target.closest('.option')) return;
-        const selected = e.target.closest('.option');
+        const selectedOption = e.target.closest('.option');
+        if (!selectedOption) return;
+        
         group.querySelectorAll('.option').forEach(opt => opt.classList.remove('active'));
-        selected.classList.add('active');
+        selectedOption.classList.add('active');
         updateStartButton();
       });
     });
@@ -506,7 +537,8 @@
 
       if (selectedMood && selectedScene && selectedDuration) {
         startButton.disabled = false;
-        const labels = startLabels[selectedMood];
+        const currentPatternKey = selectedDuration === 'endless' ? 'endless' : selectedMood;
+        const labels = startLabels[currentPatternKey] || startLabels.relax; 
         const randomLabel = labels[Math.floor(Math.random() * labels.length)];
         startButton.textContent = randomLabel;
       } else {
@@ -514,212 +546,303 @@
         startButton.textContent = "Begin Session";
       }
     }
+    
+    class Wave {
+      constructor(amp, freq, initialPhaseOffset, color) {
+        this.amp = amp; // Max amplitude for this wave layer
+        this.freq = freq; // Frequency of this wave layer
+        this.basePhase = Math.random() * Math.PI * 2; // Random static phase offset for this wave
+        this.phaseSpeed = (Math.random() * 0.003) + 0.0015; // Randomize speed (0.0015 to 0.0045)
+        this.initialPhaseOffset = initialPhaseOffset; // Specific additional offset for layering
+        this.color = color;
+        this.currentPhase = 0; // This will be incremented to create movement
+      }
+
+      update() {
+        this.currentPhase += this.phaseSpeed;
+      }
+
+      draw() {
+        if (!ctx || !canvas) return;
+        ctx.beginPath();
+        const waveCenterY = canvas.height / 2;
+        ctx.moveTo(0, waveCenterY);
+
+        for (let x = 0; x < canvas.width; x++) {
+          // Component 1 (Primary)
+          let y1 = Math.sin(x * this.freq + this.currentPhase + this.basePhase + this.initialPhaseOffset);
+          // Component 2 (Secondary, for texture)
+          let y2 = Math.sin(x * (this.freq * 0.65) + (this.currentPhase * 0.75) + this.basePhase + this.initialPhaseOffset + Math.PI / 2.5);
+          
+          // Combine components and apply amplitude scaling
+          // This makes `this.amp` the overall maximum deviation if components align perfectly.
+          let y = waveCenterY + (y1 * this.amp * 0.65) + (y2 * this.amp * 0.35);
+          
+          ctx.lineTo(x, y);
+        }
+        
+        ctx.strokeStyle = this.color;
+        ctx.lineWidth = 5; // Adjusted line width
+        ctx.stroke();
+      }
+    }
 
     function startSession() {
-  const startSound = new Audio('sounds/start.mp3');
-  startSound.play();
-  mood = document.querySelector('#moodOptions .active')?.dataset.value;
-  scene = document.querySelector('#sceneOptions .active')?.dataset.value;
-  const durationValue = document.querySelector('#durationOptions .active')?.dataset.value;
+      const startSound = new Audio('sounds/start.mp3'); 
+      const playPromiseStart = startSound.play();
+      if(playPromiseStart) playPromiseStart.catch(e => {});
 
-  if (!mood || !scene || !durationValue) {
-    alert("Please make all selections.");
-    return;
-  }
+      mood = document.querySelector('#moodOptions .active')?.dataset.value;
+      scene = document.querySelector('#sceneOptions .active')?.dataset.value;
+      const durationValue = document.querySelector('#durationOptions .active')?.dataset.value;
 
-  // Handle endless duration
-  if (durationValue === 'endless') {
-    duration = 0; // Special value for endless session
-  } else {
-    duration = parseInt(durationValue);
-  }
-
-  // Add these variables at the top of your script
-  let canvas, ctx;
-  let waves = [];
-  let animationFrameId;
-
-  // Add this Wave class
-  class Wave {
-    constructor(amp, freq, phase, color) {
-      this.amp = amp;
-      this.freq = freq;
-      this.phase = phase;
-      this.color = color;
-      this.offset = 0;
-    }
-
-    update() {
-      this.offset += 0.002;
-      this.phase += 0.005;
-    }
-
-    draw() {
-      ctx.beginPath();
-      ctx.moveTo(0, canvas.height/2);
-      
-      for(let x = 0; x < canvas.width; x++) {
-        const y = canvas.height/2 + 
-          Math.sin(x * this.freq + this.phase) * this.amp * Math.sin(this.offset) +
-          Math.cos(x * 0.005 + this.phase) * this.amp * 0.5;
-        ctx.lineTo(x, y);
+      if (!mood || !scene || !durationValue) {
+        return;
       }
-      
-      ctx.strokeStyle = this.color;
-      ctx.lineWidth = 5;
-      ctx.stroke();
-    }
-  }
 
-  // Add this initialization in startSession function
-  canvas = document.getElementById('waveCanvas');
-  ctx = canvas.getContext('2d');
-
-  // Set canvas size
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  // Create waves with calm colors
-  waves = [
-    new Wave(60, 0.01, 0, 'hsla(200, 60%, 30%, 0.4)'),  // Increased amplitude
-    new Wave(70, 0.005, Math.PI/2, 'hsla(180, 40%, 40%, 0.3)'),
-    new Wave(80, 0.002, Math.PI, 'hsla(220, 50%, 35%, 0.2)')
-  ];
-
-  function animate() {
-    ctx.fillStyle = '#1e1e2f'; // Match your background color
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    waves.forEach(wave => {
-      wave.update();
-      wave.draw();
-    });
-    
-    animationFrameId = requestAnimationFrame(animate);
-  }
-
-  animate();
-  welcomeScreen.classList.remove('active');
-  sessionScreen.classList.add('active');
-
-  // Start pre-countdown
-  let countdownVal = 3;
-  preCountdown.textContent = countdownVal;
-  playSessionSounds(); // Play audio immediately
-  const countdownInterval = setInterval(() => {
-    countdownVal--;
-    if (countdownVal === 0) {
-      preCountdown.textContent = '';
-      clearInterval(countdownInterval);
-      const start = Date.now();
-      
-      // Handle endless duration
-      if (duration === 0) {
-        endTime = Infinity; // Never ends
-        countdown.textContent = ""; // Show infinity symbol
+      if (durationValue === 'endless') {
+        duration = 0; 
       } else {
-        endTime = start + duration * 60 * 1000;
+        duration = parseInt(durationValue);
       }
+
+      canvas = document.getElementById('waveCanvas');
+      ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      // Initialize waves with varied parameters for a layered effect
+      waves = [
+        new Wave(70, 0.012, 0,       'hsla(200, 70%, 60%, 0.25)'), // Amp, Freq, InitialPhaseOffset, Color
+        new Wave(80, 0.009, 0.8,     'hsla(180, 65%, 50%, 0.2)'),
+        new Wave(60, 0.015, 1.6,     'hsla(220, 75%, 55%, 0.15)')
+      ];
+
+      animateWaves(); 
+
+      welcomeScreen.classList.remove('active');
+      sessionScreen.classList.add('active');
       
-      breathe(patterns[mood]);
-    } else {
+      breath.style.display = 'flex'; 
+      countdown.style.display = 'block';
+      doneMessage.classList.remove('show-done');
+
+      let countdownVal = 3;
       preCountdown.textContent = countdownVal;
+      playSessionSounds(); 
+
+      const preCountdownInterval = setInterval(() => {
+        countdownVal--;
+        if (countdownVal === 0) {
+          preCountdown.textContent = '';
+          clearInterval(preCountdownInterval);
+          const startTime = Date.now();
+          
+          if (duration === 0) {
+            endTime = Infinity; 
+            countdown.textContent = ""; 
+          } else {
+            endTime = startTime + duration * 60 * 1000;
+          }
+          
+          const currentPatternKey = durationValue === 'endless' ? 'endless' : mood;
+          breathe(patterns[currentPatternKey] || patterns.relax); 
+        } else {
+          preCountdown.textContent = countdownVal;
+        }
+      }, 1000);
     }
-  }, 1000);
-}
+    
+    function animateWaves() { // MODIFIED for cleaner redraw
+        if (!ctx || !canvas) return; 
+        // Clear canvas with the actual body background color
+        ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--bg').trim(); 
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        waves.forEach(wave => {
+          wave.update();
+          wave.draw();
+        });
+        
+        animationFrameId = requestAnimationFrame(animateWaves);
+    }
 
     function playSessionSounds() {
+      allowAudioRestart = true; 
+
+      const intendedIntentionVol = (mood !== 'silent') ? 0.3 : 0;
+      const intendedSceneVol = (scene !== 'silent') ? 1.0 : 0;
+
+      [intentionAudio, sceneAudio].forEach(audio => {
+          audio.pause();
+          if (audio._mainAudioEndedHandler) audio.removeEventListener('ended', audio._mainAudioEndedHandler);
+          if (audio._attemptCrossfadeHandler) audio.removeEventListener('timeupdate', audio._attemptCrossfadeHandler);
+          audio.src = ""; 
+      });
+
       if (mood !== 'silent') {
         intentionAudio.src = `sounds/${mood}.mp3`;
-        intentionAudio.loop = true;
-        intentionAudio.volume = 0.3;
-        intentionAudio.play();
+        intentionAudio.volume = 0; 
+        const playPromise = intentionAudio.play();
+        if (playPromise) playPromise.catch(error => {});
+        setupCrossfade(intentionAudio, () => intendedIntentionVol);
       }
       
-      // Only play scene sound if not silent
       if (scene !== 'silent') {
         sceneAudio.src = `sounds/${scene}.mp3`;
-        sceneAudio.loop = true;
-        sceneAudio.volume = 1;
-        sceneAudio.play();
+        sceneAudio.volume = 0; 
+        const playPromise = sceneAudio.play();
+        if (playPromise) playPromise.catch(error => {});
+        setupCrossfade(sceneAudio, () => intendedSceneVol);
       }
-      //const targetIntentionVol = parseFloat(document.getElementById('intentionVol').value);
-      //const targetSceneVol = parseFloat(document.getElementById('sceneVol').value);
 
-      let fadeDuration = 3000;
-      let fadeSteps = 30;
-      let step = 0;
+      if ((mood !== 'silent' && intentionAudio.src) || (scene !== 'silent' && sceneAudio.src)) {
+        let fadeDuration = 3000; 
+        let fadeSteps = 30;
+        let currentStep = 0;
 
-      let fadeInterval = setInterval(() => {
-        step++;
-        let progress = step / fadeSteps;
-        intentionAudio.volume = targetIntentionVol * progress;
-        sceneAudio.volume = targetSceneVol * progress;
+        if (window.audioFadeInterval) clearInterval(window.audioFadeInterval);
 
-        if (step >= fadeSteps) clearInterval(fadeInterval);
-      }, fadeDuration / fadeSteps);
-      function setupCrossfade(audio, volumeGetter) {
-  const clone = new Audio(audio.src);
-  clone.volume = 0;
-  clone.loop = false;
+        window.audioFadeInterval = setInterval(() => {
+          currentStep++;
+          let progress = currentStep / fadeSteps;
 
-  audio.addEventListener('ended', () => {
-    audio.currentTime = 0;
-    audio.play();
-  });
+          if (mood !== 'silent' && intentionAudio.src) {
+            intentionAudio.volume = Math.min(intendedIntentionVol, intendedIntentionVol * progress);
+          }
+          if (scene !== 'silent' && sceneAudio.src) {
+            sceneAudio.volume = Math.min(intendedSceneVol, intendedSceneVol * progress);
+          }
 
-  audio.addEventListener('timeupdate', () => {
-    if (audio.duration - audio.currentTime <= 2 && !clone.playing) {
-      clone.currentTime = 0;
-      clone.volume = 0;
-      clone.play();
-      clone.playing = true;
+          if (currentStep >= fadeSteps) {
+            clearInterval(window.audioFadeInterval);
+            if (mood !== 'silent' && intentionAudio.src) intentionAudio.volume = intendedIntentionVol;
+            if (scene !== 'silent' && sceneAudio.src) sceneAudio.volume = intendedSceneVol;
+          }
+        }, fadeDuration / fadeSteps);
+      }
+    }
 
-      let fadeSteps = 20;
-      let step = 0;
-      let interval = setInterval(() => {
-        step++;
-        let progress = step / fadeSteps;
-        clone.volume = volumeGetter() * progress;
-        audio.volume = volumeGetter() * (1 - progress);
+    function setupCrossfade(audioInstance, getTargetVolume) {
+      const cloneForCrossfade = new Audio();
+      let isCrossfadeInProgress = false;
+      let crossfadeIntervalId = null;
 
-        if (step >= fadeSteps) {
-          clearInterval(interval);
-          [audio, clone] = [clone, audio]; // Swap references
-          clone.playing = false;
+      const mainAudioEndedHandler = () => {
+        if (!allowAudioRestart) return;
+        audioInstance.currentTime = 0;
+        const playPromise = audioInstance.play();
+        if (playPromise) playPromise.catch(e => {});
+      };
+      
+      if (audioInstance._mainAudioEndedHandler) audioInstance.removeEventListener('ended', audioInstance._mainAudioEndedHandler);
+      audioInstance.addEventListener('ended', mainAudioEndedHandler);
+      audioInstance._mainAudioEndedHandler = mainAudioEndedHandler;
+
+      const attemptCrossfadeHandler = () => {
+        if (!allowAudioRestart || audioInstance.paused || !audioInstance.src || !audioInstance.duration || audioInstance.duration - audioInstance.currentTime > 2 || isCrossfadeInProgress) {
+          return;
         }
-      }, 100);
+
+        isCrossfadeInProgress = true;
+        cloneForCrossfade.src = audioInstance.src;
+        cloneForCrossfade.currentTime = 0;
+        cloneForCrossfade.volume = 0;
+        
+        const playPromise = cloneForCrossfade.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            let fadeSteps = 20; 
+            let step = 0;
+            const targetVolume = getTargetVolume();
+
+            if (crossfadeIntervalId) clearInterval(crossfadeIntervalId);
+
+            crossfadeIntervalId = setInterval(() => {
+              if (!allowAudioRestart && step > 0) { 
+                clearInterval(crossfadeIntervalId);
+                cloneForCrossfade.pause();
+                cloneForCrossfade.currentTime = 0;
+                cloneForCrossfade.src = "";
+                isCrossfadeInProgress = false;
+                return;
+              }
+
+              step++;
+              const progress = step / fadeSteps;
+              
+              cloneForCrossfade.volume = Math.min(targetVolume, targetVolume * progress);
+              audioInstance.volume = Math.max(0, targetVolume * (1 - progress));
+
+              if (step >= fadeSteps) {
+                clearInterval(crossfadeIntervalId);
+                audioInstance.pause(); 
+                
+                audioInstance.src = cloneForCrossfade.src;
+                audioInstance.currentTime = 0; 
+                audioInstance.volume = cloneForCrossfade.volume;
+
+                cloneForCrossfade.pause();
+                cloneForCrossfade.src = "";
+
+                if (allowAudioRestart && audioInstance.src) { 
+                     const mainPlayPromise = audioInstance.play();
+                     if(mainPlayPromise) mainPlayPromise.catch(e => {});
+                } else {
+                    audioInstance.pause();
+                }
+                isCrossfadeInProgress = false;
+              }
+            }, 100); 
+          }).catch(error => {
+            isCrossfadeInProgress = false;
+          });
+        } else {
+             isCrossfadeInProgress = false;
+        }
+      };
+
+      if (audioInstance._attemptCrossfadeHandler) audioInstance.removeEventListener('timeupdate', audioInstance._attemptCrossfadeHandler);
+      audioInstance.addEventListener('timeupdate', attemptCrossfadeHandler);
+      audioInstance._attemptCrossfadeHandler = attemptCrossfadeHandler;
     }
-  });
-}
-
-setupCrossfade(intentionAudio, () => parseFloat(document.getElementById('intentionVol').value));
-setupCrossfade(sceneAudio, () => parseFloat(document.getElementById('sceneVol').value));
-    }
-
-
 
     function breathe([inTime, holdTime, outTime]) {
       function cycle() {
-        if (duration !== 0 && Date.now() >= endTime) return endSession();
-        breath.style.transition = `transform ${inTime}ms ease-in-out`;
-        breath.style.transform = 'scale(1.3)';
+        if (duration !== 0 && Date.now() >= endTime) {
+          return endSession();
+        }
+        breath.style.transition = `transform ${inTime/1000}s ease-in-out`;
+        breath.style.transform = 'scale(1.3)'; 
+        
         setTimeout(() => {
-          breath.style.transition = `transform ${holdTime}ms linear`;
-          breath.style.transform = 'scale(1.3)';
+          if (duration !== 0 && Date.now() >= endTime && !allowAudioRestart) return; 
           setTimeout(() => {
-            breath.style.transition = `transform ${outTime}ms ease-in-out`;
-            breath.style.transform = 'scale(1)';
-            setTimeout(() => cycle(), outTime);
+            if (duration !== 0 && Date.now() >= endTime && !allowAudioRestart) return; 
+            breath.style.transition = `transform ${outTime/1000}s ease-in-out`;
+            breath.style.transform = 'scale(1)'; 
+            
+            setTimeout(() => {
+              if (allowAudioRestart) { 
+                  cycle();
+              }
+            }, outTime);
           }, holdTime);
         }, inTime);
       }
 
-      cycle();
+      if (allowAudioRestart) { 
+          cycle();
+      }
 
-      if (duration !== 0) {
-        interval = setInterval(() => {
+      if (duration !== 0) { 
+        if (sessionInterval) clearInterval(sessionInterval); 
+        sessionInterval = setInterval(() => {
           const remaining = Math.max(0, endTime - Date.now());
+          if (remaining === 0 && duration !== 0) { 
+            endSession();
+            return;
+          }
           const minutes = Math.floor(remaining / 60000);
           const seconds = Math.floor((remaining % 60000) / 1000);
           countdown.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
@@ -728,28 +851,48 @@ setupCrossfade(sceneAudio, () => parseFloat(document.getElementById('sceneVol').
     }
 
     function endSession() {
-      cancelAnimationFrame(animationFrameId);
-      if (canvas) ctx.clearRect(0, 0, canvas.width, canvas.height);
-      clearInterval(interval);
-      intentionAudio.pause();
-      sceneAudio.pause();
-      intentionAudio.currentTime = 0;
-      sceneAudio.currentTime = 0;
+      allowAudioRestart = false; 
+
+      if (window.audioFadeInterval) clearInterval(window.audioFadeInterval); 
+
+      if (typeof animationFrameId !== 'undefined') {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = undefined; 
+      }
+      if (canvas && ctx) { 
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      if (typeof sessionInterval !== 'undefined') { 
+        clearInterval(sessionInterval);
+        sessionInterval = undefined; 
+      }
+
+      [intentionAudio, sceneAudio].forEach(audio => {
+          if (audio) {
+              audio.pause();
+              audio.currentTime = 0;
+          }
+      });
+      
+      breath.style.transform = 'scale(1)'; 
       breath.style.display = 'none';
       countdown.style.display = 'none';
       doneMessage.classList.add('show-done');
       
       setTimeout(() => {
         doneMessage.classList.remove('show-done');
-        breath.style.display = 'flex';
-        countdown.style.display = 'block';
         sessionScreen.classList.remove('active');
         welcomeScreen.classList.add('active');
-        updateStartButton();
-      }, 8000);
+        
+        document.querySelectorAll('#moodOptions .active, #sceneOptions .active, #durationOptions .active').forEach(opt => {
+          opt.classList.remove('active');
+        });
+        updateStartButton(); 
+      }, 3000); 
     }
+
     window.addEventListener('resize', () => {
-      if (canvas) {
+      if (canvas && sessionScreen.classList.contains('active')) { 
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       }
@@ -757,10 +900,18 @@ setupCrossfade(sceneAudio, () => parseFloat(document.getElementById('sceneVol').
 
     startButton.addEventListener('click', startSession);
 
-    infoButton.addEventListener('click', () => infoModal.style.display = 'flex');
-    closeInfo.addEventListener('click', () => infoModal.style.display = 'none');
-    infoModal.addEventListener('click', e => { if (e.target === infoModal) infoModal.style.display = 'none'; });
+    infoButton.addEventListener('click', () => {
+        infoModal.style.display = 'flex';
+    });
+    closeInfo.addEventListener('click', () => {
+        infoModal.style.display = 'none';
+    });
+    infoModal.addEventListener('click', e => { 
+      if (e.target === infoModal) { 
+          infoModal.style.display = 'none';
+      }
+    });
+
   </script>
-  
 </body>
 </html>
