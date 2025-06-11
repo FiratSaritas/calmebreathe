@@ -240,21 +240,6 @@ button {
     transition: opacity 0.5s ease;
 }
 
-#infoButton {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    color: rgba(255,255,255,0.4);
-    cursor: pointer;
-    z-index: 1000;
-    user-select: none;
-    transition: color 0.3s;
-}
-
-#infoButton:hover {
-    color: rgba(255,255,255,0.7);
-}
 
 #infoModal {
     display: none; /* Hidden by default, shown by JS */
@@ -476,6 +461,8 @@ footer {
     gap: 1rem;
     max-width: 400px;
     margin: 0 auto;
+    width: 100%;
+    max-width: 800px;
 }
 
 .contact-form label {
