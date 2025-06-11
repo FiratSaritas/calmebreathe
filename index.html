@@ -1,917 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="description" content="Relax and find peace with our calming audio experiences. Choose from ambient music, nature sounds, and guided breathing sessions for stress relief and focus." />
-  <meta name="keywords" content="calm, relax, breathing, ambient music, nature sounds, stress relief, meditation, focus music, soothing audio" />
-  <meta name="author" content="Your Name or Brand" />
-  <meta name="google-adsense-account" content="ca-pub-9394843071535758">
-  
-  <title>Calm Breathe</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9394843071535758"
-      crossorigin="anonymous"></script>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <style>
-  :root {
-    --bg: #1e1e2f;
-    --text: #eef1f5;
-    --accent: #98c1d9;
-    --calm: #3a506b;
-    --radius: 12px;
-  }
-  html {
-    height: 100%;
-    overflow: auto;
-  }
-  body {
-    margin: 0;
-    font-family: 'Quicksand', sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-y: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  body::-webkit-scrollbar {
-    display: none;
-  }
-  .screen {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh; 
-    width: 100%;
-    box-sizing: border-box;
-    overflow-y: auto; 
-    justify-content: center;
-    padding: 2rem; 
-    background-position: center;
-    background-size: cover;
-  }
-  .active {
-    display: flex;
-  }
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  .options {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  .option {
-    position: relative;
-    width: 20vw;
-    height: 20vw;
-    max-width: 220px;
-    max-height: 220px;
-    border-radius: 16px;
-    background-size: cover;
-    background-position: center;
-    border: 3px solid transparent;
-    cursor: pointer;
-    transition: 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-  }
-  .option.active {
-    border-color: var(--accent);
-    box-shadow: 0 0 15px var(--accent), 0 0 30px rgba(152, 193, 217, 0.4);
-    transform: scale(1.05);
-    z-index: 5;
-  }
-  .option::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.3);
-    transition: background 0.3s ease;
-    z-index: 1;
-  }
-  .option span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-weight: 600;
-    font-size: 2rem;
-    text-align: center;
-    z-index: 2;
-    pointer-events: none;
-    transition: font-size 0.3s ease; 
-  }
-  .option:hover::before {
-    background: rgba(0,0,0,0.7);
-  }
-  .option:hover span {
-    font-size: 2.2rem; 
-  }
-  button { 
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    border-radius: var(--radius);
-    border: none;
-    background-color: var(--calm);
-    color: var(--text);
-    cursor: pointer;
-    margin-top: 1rem;
-  }
-  .circle {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: radial-gradient(circle at center,var(--accent) 0%,var(--calm) 100%);
-    opacity: 0.8;
-    box-shadow: 0 0 30px rgba(152, 193, 217, 0.3);
-    transition: transform 4s ease-in-out, opacity 2s ease; 
-    position: relative; 
-    z-index: 2; 
-    transform: translateZ(0); 
-    animation: strongPulse 10s ease-in-out infinite; 
-  }
-  @keyframes strongPulse { 
-    0%, 100% {
-      transform: scale(1) rotate(0deg);
-      opacity: 0.8;
-      box-shadow: 0 0 30px rgba(152, 193, 217, 0.3);
-    }
-    50% {
-      transform: scale(1.4) rotate(180deg); 
-      opacity: 1;
-      box-shadow: 0 0 60px rgba(152, 193, 217, 0.6);
-    }
-  }
-  #countdown {
-    position: absolute;
-    bottom: 2rem; 
-    font-size: 2rem;
-    opacity: 0.7; 
-    z-index: 3; 
-  }
-  #doneMessage {
-    position: absolute; 
-    font-size: 2rem;
-    color: var(--accent);
-    opacity: 0;
-    transition: opacity 2s ease-in-out;
-    z-index: 4;
-  }
-  .show-done {
-    opacity: 1 !important;
-  }
-  #preCountdown {
-    position: absolute; 
-    font-size: 5rem;
-    color: rgba(255, 255, 255, 0.5); 
-    z-index: 10;
-    transition: opacity 0.5s ease;
-  }
-  #infoButton {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    color: rgba(255,255,255,0.4);
-    cursor: pointer;
-    z-index: 1000; /* Ensure info button is above modal when modal is hidden if ever needed */
-    user-select: none;
-    transition: color 0.3s;
-  }
-  #infoButton:hover {
-    color: rgba(255,255,255,0.7);
-  }
-  #infoModal {
-    display: flex; /* MODIFIED: Visible by default */
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(30,30,47,0.9);
-    backdrop-filter: blur(4px);
-    z-index: 999;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 2rem; 
-    box-sizing: border-box;
-  }
-  #infoContent { 
-    position: relative;
-    background-color: rgba(30,30,47,0.95); 
-    border: 1px solid rgba(152, 193, 217, 0.2);
-    border-radius: var(--radius);
-    padding: 2rem;
-    width: 100%;    
-    max-width: 500px; 
-    box-sizing: border-box;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  }
-  #infoModal p {
-    color: var(--text);
-    font-size: 1.1rem;
-    max-width: 400px; 
-    line-height: 1.6;
-    margin: 0 auto; 
-  }
-  #infoContent a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-  #infoContent a:hover {
-    text-decoration: underline;
-  }
-  #closeInfo {
-    position: absolute;
-    top: 0.5rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: rgba(255,255,255,0.5);
-  }
-  #closeInfo:hover {
-    color: rgba(255,255,255,0.8);
-  }
-  .volume-controls { 
-    display: none; 
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    /* display: flex; /* Un-comment to show */
-    gap: 2rem;
-    align-items: center;
-    opacity: 0.6;
-    z-index: 3; 
-  }
-  .volume-controls input[type="range"] {
-    width: 120px;
-  }
-  #startButton {
-    padding: 1rem 2rem;
-    font-size: 1.4rem;
-    background-color: var(--accent);
-    color: var(--bg);
-    border: none;
-    border-radius: 50px;
-    font-weight: bold;
-    box-shadow: 0 0 20px rgba(152, 193, 217, 0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    animation: pulse 2s infinite;
-  }
-  #startButton:disabled {
-    background-color: #555;
-    color: #aaa;
-    box-shadow: none;
-    animation: none;
-    cursor: not-allowed;
-    transform: none;
-  }
-  #startButton:not(:disabled):hover { 
-    transform: scale(1.05);
-    background-color: #b5d9ec; 
-    box-shadow: 0 0 25px rgba(152, 193, 217, 0.7);
-  }
-  @keyframes pulse { 
-    0%, 100% {
-      transform: scale(1);
-      box-shadow: 0 0 20px rgba(152, 193, 217, 0.4);
-    }
-    50% {
-      transform: scale(1.03);
-      box-shadow: 0 0 30px rgba(152, 193, 217, 0.6);
-    }
-  }
-  #backgroundVideo { 
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1; 
-  }
-  #waveCanvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; 
-  }
-  
-  .option.endless-option {
-      background-image: url('images/silent.jpg') !important;
-  }
-
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 1.5rem; 
-      margin-top: 1rem; 
-      margin-bottom: 0.8rem;
-    }
-    .options {
-      gap: 0.8rem; 
-      margin-bottom: 1.5rem;
-    }
-    .option {
-      width: 27vw; 
-      height: 27vw;
-      min-width: 90px; 
-      min-height: 90px;
-      border-radius: 12px; 
-    }
-    .option span {
-      font-size: 1.5rem; 
-    }
-    .option:hover span {
-      font-size: 1.7rem;
-    }
-    #startButton {
-      padding: 0.8rem 1.5rem; 
-      font-size: 1.2rem;
-      margin-top: 1.5rem; 
-    }
-    .volume-controls { 
-      bottom: 5rem; 
-      flex-direction: column;
-      gap: 1rem;
-    }
-    #preCountdown {
-      font-size: 4rem; 
-    }
-    #countdown {
-      font-size: 1.5rem; 
-    }
-    #doneMessage {
-      font-size: 1.5rem; 
-    }
-    #infoContent {
-        padding: 1.5rem; 
-    }
-    #infoModal p {
-        font-size: 1rem; 
-    }
-  }
-  @media (max-width: 480px) {
-    h1 {
-        font-size: 1.3rem;
-    }
-    .option {
-        width: 35vw; 
-        height: 35vw;
-        min-width: 80px;
-        min-height: 80px;
-    }
-    .option span {
-        font-size: 1.2rem;
-    }
-    .option:hover span {
-        font-size: 1.4rem;
-    }
-    #startButton {
-        padding: 0.7rem 1.2rem;
-        font-size: 1.1rem;
-    }
-  }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="Relax and find peace with our calming audio experiences. Choose from ambient music, nature sounds, and guided breathing sessions for stress relief and focus." />
+    <meta name="keywords" content="calm, relax, breathing, ambient music, nature sounds, stress relief, meditation, focus music, soothing audio, mindfulness" />
+    <meta name="author" content="Calm Breathe Team" />
+    <meta name="google-adsense-account" content="ca-pub-9394843071535758">
+    <title>Calm Breathe - Your Sanctuary for Peace and Focus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9394843071535758" crossorigin="anonymous"></script>
 </head>
 <body>
 
-  <div id="welcome" class="screen active">
-    <h1>What’s your intention?</h1>
-    <div class="options" id="moodOptions">
-      <div class="option" data-value="relax" style="background-image: url('images/relax.jpg')"><span>Relax</span></div>
-      <div class="option" data-value="focus" style="background-image: url('images/focus.jpg')"><span>Focus</span></div>
-      <div class="option" data-value="sleep" style="background-image: url('images/sleep.jpg')"><span>Sleep</span></div>
-      <div class="option" data-value="silent" style="background-image: url('images/silent.jpg')"><span>Silent</span></div>
-    </div>
-
-    <h1>Choose your environment</h1>
-    <div class="options" id="sceneOptions">
-      <div class="option" data-value="ocean" style="background-image: url('images/ocean.jpg')"><span>Ocean</span></div>
-      <div class="option" data-value="forest" style="background-image: url('images/forest.jpg')"><span>Forest</span></div>
-      <div class="option" data-value="stars" style="background-image: url('images/stars.jpg')"><span>Stars</span></div>
-      <div class="option" data-value="campfire" style="background-image: url('images/campfire.jpg')"><span>Campfire</span></div>
-      <div class="option" data-value="clouds" style="background-image: url('images/clouds.jpg')"><span>Rain</span></div>
-      <div class="option" data-value="silent" style="background-image: url('images/silent.jpg')"><span>Silent</span></div>
-    </div>
-
-    <h1>How much time do you have?</h1>
-    <div class="options" id="durationOptions">
-      <div class="option" data-value="1" style="background-image: url('images/clock.jpg')"><span>1 min</span></div>
-      <div class="option" data-value="5" style="background-image: url('images/clock.jpg')"><span>5 min</span></div>
-      <div class="option" data-value="10" style="background-image: url('images/clock.jpg')"><span>10 min</span></div>
-      <div class="option" data-value="15" style="background-image: url('images/clock.jpg')"><span>15 min</span></div>
-      <div class="option" data-value="30" style="background-image: url('images/clock.jpg')"><span>30 min</span></div>
-      <div class="option endless-option" data-value="endless" style="background-image: url('images/clock.jpg')"><span>Endless</span></div>
-    </div>
-
-    <button id="startButton" disabled>Begin Session</button>
-  </div>
-
-  <div id="session" class="screen">
-    <canvas id="waveCanvas"></canvas>
-    <div class="circle" id="breath"></div>
-    <p id="countdown"></p>
-    <div id="doneMessage">Great job. You're done.</div>
-    <div id="preCountdown"></div>
-  </div>
-
-  <div id="infoButton">ⓘ</div>
-
-  <div id="infoModal"> <div id="infoContent">
-      <span id="closeInfo">&times;</span>
-      <h1>Welcome</h1><br><br>
-      <p>
-        This space is for you — to breathe, slow down, and reconnect.<br><br>
-        It’s completely free to use. No tracking. Just calm.<br><br>
-        If you find it helpful and want to support it, you can<br>
-        <a href="https://www.buymeacoffee.com/atlassa" target="_blank" rel="noopener noreferrer">buy me a coffee ☕</a><br><br>
-        Take a deep breath. You’re doing great.
-      </p>
-    </div>
-  </div>
-
-  <script>
-    const patterns = {
-      relax: [4000, 4000, 6000], 
-      focus: [4000, 2000, 4000],
-      sleep: [4000, 7000, 8000],
-      silent: [4000, 4000, 6000] 
-    };
-    patterns.endless = patterns.relax; 
-
-    const startLabels = {
-      relax: ['Enter Calm', 'Relax Now', 'Find Stillness'],
-      focus: ['Get Focused', 'Center Yourself', 'Be Present'],
-      sleep: ['Begin Unwinding', 'Ease into Sleep', 'Drift Off'],
-      silent: ['Silent Intention', 'Peaceful Breathing', 'Quiet Mind']
-    };
-    startLabels.endless = ['Endless Calm', 'Timeless Session', 'Unlimited Peace'];
-
-    const moodOptionsEl = document.querySelector('#moodOptions');
-    const sceneOptionsEl = document.querySelector('#sceneOptions');
-    const durationOptionsEl = document.querySelector('#durationOptions');
-    const startButton = document.getElementById('startButton');
-    const breath = document.getElementById('breath');
-    const countdown = document.getElementById('countdown');
-    const preCountdown = document.getElementById('preCountdown');
-    const doneMessage = document.getElementById('doneMessage');
-    const sessionScreen = document.getElementById('session');
-    const welcomeScreen = document.getElementById('welcome');
-    const infoButton = document.getElementById('infoButton');
-    const infoModal = document.getElementById('infoModal');
-    const closeInfo = document.getElementById('closeInfo');
-
-    let mood, scene, duration;
-    let endTime, sessionInterval; 
-    
-    let intentionAudio = new Audio();
-    let sceneAudio = new Audio();
-    let hoverAudio = new Audio();
-    let selectedAudio = new Audio('sounds/selected.mp3'); 
-
-    let allowAudioRestart = true;
-
-    let canvas, ctx;
-    let waves = [];
-    let animationFrameId;
-
-
-    document.querySelectorAll('.option').forEach(option => {
-      option.addEventListener('mouseenter', () => {
-        const group = option.parentElement.id;
-        let audioPath;
-
-        if (group === 'moodOptions') {
-          audioPath = `sounds/${option.dataset.value}.mp3`;
-        } else if (group === 'sceneOptions') {
-          audioPath = `sounds/${option.dataset.value}.mp3`;
-        } else if (group === 'durationOptions') {
-          audioPath = `sounds/ticking.mp3`; 
-        }
-
-        if (audioPath) {
-          hoverAudio.src = audioPath;
-          hoverAudio.volume = 0.6;
-          hoverAudio.currentTime = 0;
-          const playPromise = hoverAudio.play();
-          if (playPromise) playPromise.catch(e => {}); // Silently catch hover play error
-        }
-      });
-      option.addEventListener('mouseleave', () => {
-        hoverAudio.pause();
-        hoverAudio.currentTime = 0;
-      });
-
-      option.addEventListener('click', () => {
-        selectedAudio.currentTime = 0;
-        const playPromise = selectedAudio.play();
-        if (playPromise) playPromise.catch(e => {}); // Silently catch select play error
-      });
-    });
-
-    document.querySelectorAll('.options').forEach(group => {
-      group.addEventListener('click', e => {
-        const selectedOption = e.target.closest('.option');
-        if (!selectedOption) return;
-        
-        group.querySelectorAll('.option').forEach(opt => opt.classList.remove('active'));
-        selectedOption.classList.add('active');
-        updateStartButton();
-      });
-    });
-
-    function updateStartButton() {
-      const selectedMood = document.querySelector('#moodOptions .active')?.dataset.value;
-      const selectedScene = document.querySelector('#sceneOptions .active')?.dataset.value;
-      const selectedDuration = document.querySelector('#durationOptions .active')?.dataset.value;
-
-      if (selectedMood && selectedScene && selectedDuration) {
-        startButton.disabled = false;
-        const currentPatternKey = selectedDuration === 'endless' ? 'endless' : selectedMood;
-        const labels = startLabels[currentPatternKey] || startLabels.relax; 
-        const randomLabel = labels[Math.floor(Math.random() * labels.length)];
-        startButton.textContent = randomLabel;
-      } else {
-        startButton.disabled = true;
-        startButton.textContent = "Begin Session";
-      }
-    }
-    
-    class Wave {
-      constructor(amp, freq, initialPhaseOffset, color) {
-        this.amp = amp; // Max amplitude for this wave layer
-        this.freq = freq; // Frequency of this wave layer
-        this.basePhase = Math.random() * Math.PI * 2; // Random static phase offset for this wave
-        this.phaseSpeed = (Math.random() * 0.003) + 0.0015; // Randomize speed (0.0015 to 0.0045)
-        this.initialPhaseOffset = initialPhaseOffset; // Specific additional offset for layering
-        this.color = color;
-        this.currentPhase = 0; // This will be incremented to create movement
-      }
-
-      update() {
-        this.currentPhase += this.phaseSpeed;
-      }
-
-      draw() {
-        if (!ctx || !canvas) return;
-        ctx.beginPath();
-        const waveCenterY = canvas.height / 2;
-        ctx.moveTo(0, waveCenterY);
-
-        for (let x = 0; x < canvas.width; x++) {
-          // Component 1 (Primary)
-          let y1 = Math.sin(x * this.freq + this.currentPhase + this.basePhase + this.initialPhaseOffset);
-          // Component 2 (Secondary, for texture)
-          let y2 = Math.sin(x * (this.freq * 0.65) + (this.currentPhase * 0.75) + this.basePhase + this.initialPhaseOffset + Math.PI / 2.5);
-          
-          // Combine components and apply amplitude scaling
-          // This makes `this.amp` the overall maximum deviation if components align perfectly.
-          let y = waveCenterY + (y1 * this.amp * 0.65) + (y2 * this.amp * 0.35);
-          
-          ctx.lineTo(x, y);
-        }
-        
-        ctx.strokeStyle = this.color;
-        ctx.lineWidth = 5; // Adjusted line width
-        ctx.stroke();
-      }
-    }
-
-    function startSession() {
-      const startSound = new Audio('sounds/start.mp3'); 
-      const playPromiseStart = startSound.play();
-      if(playPromiseStart) playPromiseStart.catch(e => {});
-
-      mood = document.querySelector('#moodOptions .active')?.dataset.value;
-      scene = document.querySelector('#sceneOptions .active')?.dataset.value;
-      const durationValue = document.querySelector('#durationOptions .active')?.dataset.value;
-
-      if (!mood || !scene || !durationValue) {
-        return;
-      }
-
-      if (durationValue === 'endless') {
-        duration = 0; 
-      } else {
-        duration = parseInt(durationValue);
-      }
-
-      canvas = document.getElementById('waveCanvas');
-      ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      // Initialize waves with varied parameters for a layered effect
-      waves = [
-        new Wave(70, 0.012, 0,       'hsla(200, 70%, 60%, 0.25)'), // Amp, Freq, InitialPhaseOffset, Color
-        new Wave(80, 0.009, 0.8,     'hsla(180, 65%, 50%, 0.2)'),
-        new Wave(60, 0.015, 1.6,     'hsla(220, 75%, 55%, 0.15)')
-      ];
-
-      animateWaves(); 
-
-      welcomeScreen.classList.remove('active');
-      sessionScreen.classList.add('active');
-      
-      breath.style.display = 'flex'; 
-      countdown.style.display = 'block';
-      doneMessage.classList.remove('show-done');
-
-      let countdownVal = 3;
-      preCountdown.textContent = countdownVal;
-      playSessionSounds(); 
-
-      const preCountdownInterval = setInterval(() => {
-        countdownVal--;
-        if (countdownVal === 0) {
-          preCountdown.textContent = '';
-          clearInterval(preCountdownInterval);
-          const startTime = Date.now();
-          
-          if (duration === 0) {
-            endTime = Infinity; 
-            countdown.textContent = ""; 
-          } else {
-            endTime = startTime + duration * 60 * 1000;
-          }
-          
-          const currentPatternKey = durationValue === 'endless' ? 'endless' : mood;
-          breathe(patterns[currentPatternKey] || patterns.relax); 
-        } else {
-          preCountdown.textContent = countdownVal;
-        }
-      }, 1000);
-    }
-    
-    function animateWaves() { // MODIFIED for cleaner redraw
-        if (!ctx || !canvas) return; 
-        // Clear canvas with the actual body background color
-        ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--bg').trim(); 
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        waves.forEach(wave => {
-          wave.update();
-          wave.draw();
-        });
-        
-        animationFrameId = requestAnimationFrame(animateWaves);
-    }
-
-    function playSessionSounds() {
-      allowAudioRestart = true; 
-
-      const intendedIntentionVol = (mood !== 'silent') ? 0.3 : 0;
-      const intendedSceneVol = (scene !== 'silent') ? 1.0 : 0;
-
-      [intentionAudio, sceneAudio].forEach(audio => {
-          audio.pause();
-          if (audio._mainAudioEndedHandler) audio.removeEventListener('ended', audio._mainAudioEndedHandler);
-          if (audio._attemptCrossfadeHandler) audio.removeEventListener('timeupdate', audio._attemptCrossfadeHandler);
-          audio.src = ""; 
-      });
-
-      if (mood !== 'silent') {
-        intentionAudio.src = `sounds/${mood}.mp3`;
-        intentionAudio.volume = 0; 
-        const playPromise = intentionAudio.play();
-        if (playPromise) playPromise.catch(error => {});
-        setupCrossfade(intentionAudio, () => intendedIntentionVol);
-      }
-      
-      if (scene !== 'silent') {
-        sceneAudio.src = `sounds/${scene}.mp3`;
-        sceneAudio.volume = 0; 
-        const playPromise = sceneAudio.play();
-        if (playPromise) playPromise.catch(error => {});
-        setupCrossfade(sceneAudio, () => intendedSceneVol);
-      }
-
-      if ((mood !== 'silent' && intentionAudio.src) || (scene !== 'silent' && sceneAudio.src)) {
-        let fadeDuration = 3000; 
-        let fadeSteps = 30;
-        let currentStep = 0;
-
-        if (window.audioFadeInterval) clearInterval(window.audioFadeInterval);
-
-        window.audioFadeInterval = setInterval(() => {
-          currentStep++;
-          let progress = currentStep / fadeSteps;
-
-          if (mood !== 'silent' && intentionAudio.src) {
-            intentionAudio.volume = Math.min(intendedIntentionVol, intendedIntentionVol * progress);
-          }
-          if (scene !== 'silent' && sceneAudio.src) {
-            sceneAudio.volume = Math.min(intendedSceneVol, intendedSceneVol * progress);
-          }
-
-          if (currentStep >= fadeSteps) {
-            clearInterval(window.audioFadeInterval);
-            if (mood !== 'silent' && intentionAudio.src) intentionAudio.volume = intendedIntentionVol;
-            if (scene !== 'silent' && sceneAudio.src) sceneAudio.volume = intendedSceneVol;
-          }
-        }, fadeDuration / fadeSteps);
-      }
-    }
-
-    function setupCrossfade(audioInstance, getTargetVolume) {
-      const cloneForCrossfade = new Audio();
-      let isCrossfadeInProgress = false;
-      let crossfadeIntervalId = null;
-
-      const mainAudioEndedHandler = () => {
-        if (!allowAudioRestart) return;
-        audioInstance.currentTime = 0;
-        const playPromise = audioInstance.play();
-        if (playPromise) playPromise.catch(e => {});
-      };
-      
-      if (audioInstance._mainAudioEndedHandler) audioInstance.removeEventListener('ended', audioInstance._mainAudioEndedHandler);
-      audioInstance.addEventListener('ended', mainAudioEndedHandler);
-      audioInstance._mainAudioEndedHandler = mainAudioEndedHandler;
-
-      const attemptCrossfadeHandler = () => {
-        if (!allowAudioRestart || audioInstance.paused || !audioInstance.src || !audioInstance.duration || audioInstance.duration - audioInstance.currentTime > 2 || isCrossfadeInProgress) {
-          return;
-        }
-
-        isCrossfadeInProgress = true;
-        cloneForCrossfade.src = audioInstance.src;
-        cloneForCrossfade.currentTime = 0;
-        cloneForCrossfade.volume = 0;
-        
-        const playPromise = cloneForCrossfade.play();
-        if (playPromise !== undefined) {
-          playPromise.then(() => {
-            let fadeSteps = 20; 
-            let step = 0;
-            const targetVolume = getTargetVolume();
-
-            if (crossfadeIntervalId) clearInterval(crossfadeIntervalId);
-
-            crossfadeIntervalId = setInterval(() => {
-              if (!allowAudioRestart && step > 0) { 
-                clearInterval(crossfadeIntervalId);
-                cloneForCrossfade.pause();
-                cloneForCrossfade.currentTime = 0;
-                cloneForCrossfade.src = "";
-                isCrossfadeInProgress = false;
-                return;
-              }
-
-              step++;
-              const progress = step / fadeSteps;
-              
-              cloneForCrossfade.volume = Math.min(targetVolume, targetVolume * progress);
-              audioInstance.volume = Math.max(0, targetVolume * (1 - progress));
-
-              if (step >= fadeSteps) {
-                clearInterval(crossfadeIntervalId);
-                audioInstance.pause(); 
-                
-                audioInstance.src = cloneForCrossfade.src;
-                audioInstance.currentTime = 0; 
-                audioInstance.volume = cloneForCrossfade.volume;
-
-                cloneForCrossfade.pause();
-                cloneForCrossfade.src = "";
-
-                if (allowAudioRestart && audioInstance.src) { 
-                     const mainPlayPromise = audioInstance.play();
-                     if(mainPlayPromise) mainPlayPromise.catch(e => {});
-                } else {
-                    audioInstance.pause();
-                }
-                isCrossfadeInProgress = false;
-              }
-            }, 100); 
-          }).catch(error => {
-            isCrossfadeInProgress = false;
-          });
-        } else {
-             isCrossfadeInProgress = false;
-        }
-      };
-
-      if (audioInstance._attemptCrossfadeHandler) audioInstance.removeEventListener('timeupdate', audioInstance._attemptCrossfadeHandler);
-      audioInstance.addEventListener('timeupdate', attemptCrossfadeHandler);
-      audioInstance._attemptCrossfadeHandler = attemptCrossfadeHandler;
-    }
-
-    function breathe([inTime, holdTime, outTime]) {
-      function cycle() {
-        if (duration !== 0 && Date.now() >= endTime) {
-          return endSession();
-        }
-        breath.style.transition = `transform ${inTime/1000}s ease-in-out`;
-        breath.style.transform = 'scale(1.3)'; 
-        
-        setTimeout(() => {
-          if (duration !== 0 && Date.now() >= endTime && !allowAudioRestart) return; 
-          setTimeout(() => {
-            if (duration !== 0 && Date.now() >= endTime && !allowAudioRestart) return; 
-            breath.style.transition = `transform ${outTime/1000}s ease-in-out`;
-            breath.style.transform = 'scale(1)'; 
-            
-            setTimeout(() => {
-              if (allowAudioRestart) { 
-                  cycle();
-              }
-            }, outTime);
-          }, holdTime);
-        }, inTime);
-      }
-
-      if (allowAudioRestart) { 
-          cycle();
-      }
-
-      if (duration !== 0) { 
-        if (sessionInterval) clearInterval(sessionInterval); 
-        sessionInterval = setInterval(() => {
-          const remaining = Math.max(0, endTime - Date.now());
-          if (remaining === 0 && duration !== 0) { 
-            endSession();
-            return;
-          }
-          const minutes = Math.floor(remaining / 60000);
-          const seconds = Math.floor((remaining % 60000) / 1000);
-          countdown.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        }, 1000);
-      }
-    }
-
-    function endSession() {
-      allowAudioRestart = false; 
-
-      if (window.audioFadeInterval) clearInterval(window.audioFadeInterval); 
-
-      if (typeof animationFrameId !== 'undefined') {
-        cancelAnimationFrame(animationFrameId);
-        animationFrameId = undefined; 
-      }
-      if (canvas && ctx) { 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
-      if (typeof sessionInterval !== 'undefined') { 
-        clearInterval(sessionInterval);
-        sessionInterval = undefined; 
-      }
-
-      [intentionAudio, sceneAudio].forEach(audio => {
-          if (audio) {
-              audio.pause();
-              audio.currentTime = 0;
-          }
-      });
-      
-      breath.style.transform = 'scale(1)'; 
-      breath.style.display = 'none';
-      countdown.style.display = 'none';
-      doneMessage.classList.add('show-done');
-      
-      setTimeout(() => {
-        doneMessage.classList.remove('show-done');
-        sessionScreen.classList.remove('active');
-        welcomeScreen.classList.add('active');
-        
-        document.querySelectorAll('#moodOptions .active, #sceneOptions .active, #durationOptions .active').forEach(opt => {
-          opt.classList.remove('active');
-        });
-        updateStartButton(); 
-      }, 3000); 
-    }
-
-    window.addEventListener('resize', () => {
-      if (canvas && sessionScreen.classList.contains('active')) { 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-    });
-
-    startButton.addEventListener('click', startSession);
-
-    infoButton.addEventListener('click', () => {
-        infoModal.style.display = 'flex';
-    });
-    closeInfo.addEventListener('click', () => {
-        infoModal.style.display = 'none';
-    });
-    infoModal.addEventListener('click', e => { 
-      if (e.target === infoModal) { 
-          infoModal.style.display = 'none';
-      }
-    });
-
-  </script>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">Calm Breathe</a>
+            </div>
+            <ul>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="welcome" class="screen active">
+            <h1>What’s your intention?</h1>
+            <div class="options" id="moodOptions">
+                <div class="option" data-value="relax" style="background-image: url('images/relax.jpg')"><span>Relax</span></div>
+                <div class="option" data-value="focus" style="background-image: url('images/focus.jpg')"><span>Focus</span></div>
+                <div class="option" data-value="sleep" style="background-image: url('images/sleep.jpg')"><span>Sleep</span></div>
+                <div class="option" data-value="silent" style="background-image: url('images/silent.jpg')"><span>Silent</span></div>
+            </div>
+
+            <h1>Choose your environment</h1>
+            <div class="options" id="sceneOptions">
+                <div class="option" data-value="ocean" style="background-image: url('images/ocean.jpg')"><span>Ocean</span></div>
+                <div class="option" data-value="forest" style="background-image: url('images/forest.jpg')"><span>Forest</span></div>
+                <div class="option" data-value="stars" style="background-image: url('images/stars.jpg')"><span>Stars</span></div>
+                <div class="option" data-value="campfire" style="background-image: url('images/campfire.jpg')"><span>Campfire</span></div>
+                <div class="option" data-value="clouds" style="background-image: url('images/clouds.jpg')"><span>Rain</span></div>
+                <div class="option" data-value="silent" style="background-image: url('images/silent.jpg')"><span>Silent</span></div>
+            </div>
+
+            <h1>How much time do you have?</h1>
+            <div class="options" id="durationOptions">
+                <div class="option" data-value="1" style="background-image: url('images/clock.jpg')"><span>1 min</span></div>
+                <div class="option" data-value="5" style="background-image: url('images/clock.jpg')"><span>5 min</span></div>
+                <div class="option" data-value="10" style="background-image: url('images/clock.jpg')"><span>10 min</span></div>
+                <div class="option" data-value="15" style="background-image: url('images/clock.jpg')"><span>15 min</span></div>
+                <div class="option" data-value="30" style="background-image: url('images/clock.jpg')"><span>30 min</span></div>
+                <div class="option endless-option" data-value="endless" style="background-image: url('images/silent.jpg')"><span>Endless</span></div>
+            </div>
+
+            <button id="startButton" disabled>Begin Session</button>
+
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;"
+                 data-ad-layout="in-article"
+                 data-ad-format="fluid"
+                 data-ad-client="ca-pub-9394843071535758"
+                 data-ad-slot="YOUR_AD_SLOT_ID"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <div id="session" class="screen">
+            <canvas id="waveCanvas"></canvas>
+            <div class="circle" id="breath"></div>
+            <p id="countdown"></p>
+            <div id="doneMessage">Great job. You're done.</div>
+            <div id="preCountdown"></div>
+        </div>
+
+        <div id="infoButton">ⓘ</div>
+
+        <div id="infoModal">
+            <div id="infoContent">
+                <span id="closeInfo">&times;</span>
+                <h1>Welcome to Calm Breathe</h1><br><br>
+                <p>
+                    This space is designed to help you relax, focus, and find peace through guided breathing and soothing audio.<br><br>
+                    It’s completely free to use, without any tracking. Just calm.<br><br>
+                    If you find it helpful and wish to support our mission, you can
+                    <a href="https://www.buymeacoffee.com/atlassa" target="_blank" rel="noopener noreferrer">buy us a coffee ☕</a><br><br>
+                    Take a deep breath. You’re doing great.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Calm Breathe. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="about.html">About Us</a>
+            <span>|</span>
+            <a href="privacy.html">Privacy Policy</a>
+            <span>|</span>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
