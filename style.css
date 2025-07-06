@@ -4,6 +4,7 @@
     --accent: #98c1d9;
     --calm: #3a506b;
     --radius: 12px;
+    --light-gray: #b0bec5; /* Added a slightly lighter grey for softer contrast */
 }
 
 html {
@@ -107,17 +108,65 @@ main {
 }
 
 h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 2.2rem; /* Increased font size */
+    margin-bottom: 1.5rem; /* Increased margin */
     text-align: center;
+    color: var(--accent); /* Ensure consistent heading color */
 }
+
+/* General paragraph and list styling for better readability */
+p {
+    font-size: 1.15rem; /* Slightly larger text for body content */
+    line-height: 1.7; /* Increased line height for better spacing */
+    margin-bottom: 1.2em; /* More space between paragraphs */
+    color: var(--text);
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 25px; /* More padding for list items */
+    margin-bottom: 1.2em;
+}
+
+li {
+    font-size: 1.15rem; /* Consistent font size for list items */
+    line-height: 1.6;
+    margin-bottom: 0.5em; /* Space between list items */
+}
+
+strong {
+    color: var(--accent); /* Highlight strong text a bit more */
+}
+
+/* Hero Section Specifics */
+.hero-section {
+    max-width: 900px; /* Wider content for hero section */
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 0 1rem;
+}
+
+.hero-section h1 {
+    font-size: 2.8rem; /* Larger, more impactful hero heading */
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+}
+
+.hero-section p {
+    font-size: 1.25rem; /* Larger text for hero description */
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--light-gray); /* Softer text color for hero paragraphs */
+}
+
 
 .options {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    gap: 1.5rem; /* Increased gap */
+    margin-bottom: 3rem; /* More space below options */
 }
 
 .option {
@@ -126,7 +175,7 @@ h1 {
     height: 20vw;
     max-width: 220px;
     max-height: 220px;
-    border-radius: 16px;
+    border-radius: var(--radius); /* Using variable for consistency */
     background-size: cover;
     background-position: center;
     border: 3px solid transparent;
@@ -146,7 +195,7 @@ h1 {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.4); /* Slightly darker overlay */
     transition: background 0.3s ease;
     z-index: 1;
 }
@@ -158,19 +207,20 @@ h1 {
     transform: translate(-50%, -50%);
     color: white;
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 2.1rem; /* Slightly larger font */
     text-align: center;
     z-index: 2;
     pointer-events: none;
     transition: font-size 0.3s ease;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7); /* Added text shadow for readability over images */
 }
 
 .option:hover::before {
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.6); /* Slightly darker on hover */
 }
 
 .option:hover span {
-    font-size: 2.2rem;
+    font-size: 2.4rem; /* Larger hover effect */
 }
 
 button {
@@ -214,18 +264,20 @@ button {
 #countdown {
     position: absolute;
     bottom: 2rem;
-    font-size: 2rem;
-    opacity: 0.7;
+    font-size: 2.2rem; /* Slightly larger */
+    opacity: 0.8; /* Slightly more visible */
     z-index: 3;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 #doneMessage {
     position: absolute;
-    font-size: 2rem;
+    font-size: 2.2rem; /* Slightly larger */
     color: var(--accent);
     opacity: 0;
     transition: opacity 2s ease-in-out;
     z-index: 4;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
 }
 
 .show-done {
@@ -234,10 +286,11 @@ button {
 
 #preCountdown {
     position: absolute;
-    font-size: 5rem;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 6rem; /* Larger countdown */
+    color: rgba(255, 255, 255, 0.6); /* Slightly more visible */
     z-index: 10;
     transition: opacity 0.5s ease;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
 }
 
 
@@ -248,8 +301,8 @@ button {
     left: 0;
     height: 100%;
     width: 100%;
-    background: rgba(30,30,47,0.9);
-    backdrop-filter: blur(4px);
+    background: rgba(30,30,47,0.95); /* Slightly less transparent */
+    backdrop-filter: blur(6px); /* Stronger blur */
     z-index: 999;
     justify-content: center;
     align-items: center;
@@ -260,27 +313,27 @@ button {
 
 #infoContent {
     position: relative;
-    background-color: rgba(30,30,47,0.95);
-    border: 1px solid rgba(152, 193, 217, 0.2);
+    background-color: rgba(30,30,47,0.98); /* Less transparent */
+    border: 1px solid rgba(152, 193, 217, 0.3); /* Slightly more visible border */
     border-radius: var(--radius);
-    padding: 2rem;
+    padding: 2.5rem; /* More padding */
     width: 100%;
-    max-width: 500px;
+    max-width: 550px; /* Slightly wider modal */
     box-sizing: border-box;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    box-shadow: 0 0 30px rgba(0,0,0,0.6); /* Stronger shadow */
 }
 
 #infoModal p {
     color: var(--text);
-    font-size: 1.1rem;
-    max-width: 400px;
-    line-height: 1.6;
-    margin: 0 auto;
+    font-size: 1.15rem; /* Slightly larger text */
+    line-height: 1.7; /* Better line spacing */
+    margin: 0 auto 1.5rem auto; /* More margin below paragraphs */
 }
 
 #infoContent a {
     color: var(--accent);
     text-decoration: none;
+    font-weight: 600; /* Make links a bit bolder */
 }
 
 #infoContent a:hover {
@@ -289,15 +342,15 @@ button {
 
 #closeInfo {
     position: absolute;
-    top: 0.5rem;
-    right: 1rem;
-    font-size: 1.5rem;
+    top: 0.8rem; /* Adjusted position */
+    right: 1.2rem; /* Adjusted position */
+    font-size: 1.8rem; /* Larger close button */
     cursor: pointer;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.7); /* More visible */
 }
 
 #closeInfo:hover {
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,1); /* Fully opaque on hover */
 }
 
 .volume-controls {
@@ -308,23 +361,51 @@ button {
     transform: translateX(-50%);
     gap: 2rem;
     align-items: center;
-    opacity: 0.6;
+    opacity: 0.8; /* More visible */
     z-index: 3;
 }
 
 .volume-controls input[type="range"] {
     width: 120px;
+    -webkit-appearance: none; /* Remove default styling */
+    appearance: none;
+    height: 8px; /* Thicker track */
+    background: var(--calm); /* Track color */
+    border-radius: 5px;
+    outline: none;
+    transition: opacity .2s;
 }
 
+.volume-controls input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px; /* Larger thumb */
+    height: 20px; /* Larger thumb */
+    border-radius: 50%;
+    background: var(--accent); /* Thumb color */
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(152, 193, 217, 0.5);
+}
+
+.volume-controls input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(152, 193, 217, 0.5);
+}
+
+
 #startButton {
-    padding: 1rem 2rem;
-    font-size: 1.4rem;
+    padding: 1.1rem 2.5rem; /* Larger padding */
+    font-size: 1.5rem; /* Larger font size */
     background-color: var(--accent);
     color: var(--bg);
     border: none;
     border-radius: 50px;
     font-weight: bold;
-    box-shadow: 0 0 20px rgba(152, 193, 217, 0.4);
+    box-shadow: 0 0 25px rgba(152, 193, 217, 0.5); /* Stronger shadow */
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     animation: pulse 2s infinite;
 }
@@ -339,19 +420,19 @@ button {
 }
 
 #startButton:not(:disabled):hover {
-    transform: scale(1.05);
+    transform: scale(1.07); /* More pronounced hover */
     background-color: #b5d9ec;
-    box-shadow: 0 0 25px rgba(152, 193, 217, 0.7);
+    box-shadow: 0 0 35px rgba(152, 193, 217, 0.8); /* Stronger hover shadow */
 }
 
 @keyframes pulse {
     0%, 100% {
         transform: scale(1);
-        box-shadow: 0 0 20px rgba(152, 193, 217, 0.4);
+        box-shadow: 0 0 25px rgba(152, 193, 217, 0.5);
     }
     50% {
-        transform: scale(1.03);
-        box-shadow: 0 0 30px rgba(152, 193, 217, 0.6);
+        transform: scale(1.04); /* Slightly more pronounced pulse */
+        box-shadow: 0 0 35px rgba(152, 193, 217, 0.7);
     }
 }
 
@@ -375,26 +456,26 @@ button {
 }
 
 .option.endless-option {
-    background-image: url('images/silent.jpg') !important;
+    background-image: url('images/endless.jpg') !important; /* Consistent image for endless */
 }
 
 /* Footer Styles */
 footer {
     background-color: var(--calm);
     color: var(--text);
-    padding: 1.5rem 2rem;
+    padding: 1.8rem 2rem; /* More padding */
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.95rem; /* Slightly larger font */
     width: 100%;
     box-sizing: border-box;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .footer-links {
-    margin-top: 0.8rem;
+    margin-top: 1rem; /* More margin */
     display: flex;
     justify-content: center;
-    gap: 0.8rem;
+    gap: 1rem; /* Increased gap */
 }
 
 .footer-links a {
@@ -410,39 +491,43 @@ footer {
 
 /* Page-specific styles for about, privacy, contact */
 .page-content {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: rgba(30,30,47,0.9);
+    max-width: 900px; /* Wider content area */
+    margin: 3rem auto; /* More vertical margin */
+    padding: 2.5rem; /* More padding */
+    background-color: rgba(30,30,47,0.95); /* Less transparent background */
     border-radius: var(--radius);
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    box-shadow: 0 0 25px rgba(0,0,0,0.6); /* Stronger shadow */
     text-align: left;
 }
 
 .page-content h2 {
     color: var(--accent);
-    font-size: 2.2rem;
-    margin-bottom: 1.5rem;
+    font-size: 2.5rem; /* Larger heading */
+    margin-bottom: 2rem; /* More margin */
     text-align: center;
 }
 
 .page-content h3 {
-    color: var(--text);
-    font-size: 1.6rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    color: var(--accent); /* Consistent accent color for h3 */
+    font-size: 1.8rem; /* Larger heading */
+    margin-top: 2.5rem; /* More top margin */
+    margin-bottom: 1.2rem; /* More bottom margin */
 }
 
 .page-content p, .page-content ul, .page-content li {
-    color: var(--text);
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+    color: var(--light-gray); /* Softer text color for body content */
+    font-size: 1.15rem; /* Larger font size */
+    line-height: 1.7; /* Improved line height */
+    margin-bottom: 1.2rem; /* Consistent spacing */
 }
 
 .page-content ul {
     list-style-type: disc;
-    padding-left: 20px;
+    padding-left: 25px; /* More padding */
+}
+
+.page-content li {
+    margin-bottom: 0.6rem; /* More space between list items */
 }
 
 .page-content a {
@@ -454,35 +539,36 @@ footer {
     text-decoration: underline;
 }
 
-/* Contact form basic styling */
+/* Contact form basic styling - adjusted for consistency */
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    max-width: 400px;
+    gap: 1.2rem; /* Increased gap */
+    max-width: 500px; /* Wider form */
     margin: 0 auto;
     width: 100%;
-    max-width: 800px;
 }
 
 .contact-form label {
     font-weight: 600;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.3rem; /* More space */
     display: block;
+    font-size: 1.1rem; /* Slightly larger label font */
 }
 
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
-    padding: 0.8rem;
+    padding: 1rem; /* More padding in input fields */
     border: 1px solid var(--calm);
     border-radius: 8px;
     background-color: #2a2a3f;
     color: var(--text);
     font-family: 'Quicksand', sans-serif;
-    font-size: 1rem;
+    font-size: 1.1rem; /* Larger input font */
     width: 100%;
     box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .contact-form input[type="text"]:focus,
@@ -490,33 +576,130 @@ footer {
 .contact-form textarea:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 5px rgba(152, 193, 217, 0.5);
+    box-shadow: 0 0 8px rgba(152, 193, 217, 0.7); /* Stronger focus shadow */
 }
 
 .contact-form textarea {
-    min-height: 120px;
+    min-height: 150px; /* Taller textarea */
     resize: vertical;
 }
 
 .contact-form button {
-    padding: 0.8rem 1.5rem;
+    padding: 1rem 1.8rem; /* More padding */
     background-color: var(--accent);
     color: var(--bg);
     border: none;
     border-radius: 8px;
-    font-size: 1.1rem;
+    font-size: 1.2rem; /* Larger button font */
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 1.5rem; /* More space above button */
 }
 
 .contact-form button:hover {
     background-color: #b5d9ec;
-    transform: translateY(-2px);
+    transform: translateY(-3px); /* More pronounced lift */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Add shadow on hover */
 }
 
 
+/* --- Blog Section Styles --- */
+.blog-container {
+    max-width: 900px; /* Confine blog content to a readable width */
+    margin: 4rem auto; /* More spacing for the whole blog section */
+    padding: 2.5rem; /* Generous padding around the entire blog section */
+    background-color: rgba(30,30,47,0.95); /* Slightly less transparent background */
+    border-radius: var(--radius);
+    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+    text-align: left; /* Align text left within blog posts */
+}
+
+.blog-container h2 {
+    font-size: 2.5rem; /* Larger main blog heading */
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.blog-container > p { /* Styling for the introductory paragraph below h2 */
+    font-size: 1.2rem;
+    line-height: 1.8;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--light-gray);
+}
+
+.blog-post {
+    padding: 2rem 0; /* Vertical padding between blog posts */
+    border-bottom: 1px solid rgba(152, 193, 217, 0.1); /* Subtle separator */
+    margin-bottom: 3rem; /* Space after each post */
+}
+
+.blog-post:last-child {
+    border-bottom: none; /* No border for the last post */
+    margin-bottom: 0;
+}
+
+.blog-post h3 {
+    font-size: 2rem; /* Larger blog post titles */
+    color: var(--accent);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.blog-post h4, .blog-post h5 {
+    font-size: 1.5rem; /* Subheadings for blog posts */
+    color: var(--text);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.blog-post p {
+    font-size: 1.15rem; /* Consistent body text size */
+    line-height: 1.7; /* Consistent line height */
+    margin-bottom: 1.2em; /* Consistent paragraph spacing */
+    color: var(--light-gray); /* Soften body text slightly for longer reads */
+}
+
+.blog-post ul {
+    list-style-type: disc;
+    padding-left: 30px; /* More indentation for lists */
+    margin-bottom: 1.2em;
+}
+
+.blog-post li {
+    font-size: 1.15rem; /* Consistent font size for list items */
+    line-height: 1.6;
+    margin-bottom: 0.6em; /* Space between list items */
+    color: var(--light-gray);
+}
+
+/* --- End Blog Section Styles --- */
+
+
 /* Media Queries */
+@media (max-width: 992px) { /* Added a new breakpoint for larger tablets/smaller desktops */
+    .hero-section h1 {
+        font-size: 2.4rem;
+    }
+    .hero-section p {
+        font-size: 1.15rem;
+    }
+    .page-content, .blog-container {
+        max-width: 800px;
+        margin: 2.5rem auto;
+        padding: 2rem;
+    }
+    .blog-post h3 {
+        font-size: 1.8rem;
+    }
+    .blog-post p, .blog-post li {
+        font-size: 1.1rem;
+    }
+}
+
+
 @media (max-width: 768px) {
     header, footer {
         padding: 0.8rem 1rem;
@@ -542,30 +725,40 @@ footer {
     }
 
     h1 {
-        font-size: 1.5rem;
+        font-size: 1.8rem; /* Adjusted for smaller screens */
         margin-top: 1rem;
-        margin-bottom: 0.8rem;
+        margin-bottom: 1rem;
+    }
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    .hero-section p {
+        font-size: 1.05rem;
+    }
+    p, li {
+        font-size: 1rem; /* Smaller base font size for mobile */
+        line-height: 1.6;
     }
     .options {
-        gap: 0.8rem;
-        margin-bottom: 1.5rem;
+        gap: 1rem;
+        margin-bottom: 2rem;
     }
     .option {
-        width: 27vw;
-        height: 27vw;
-        min-width: 90px;
-        min-height: 90px;
+        width: 30vw; /* Increased size on mobile for better touch */
+        height: 30vw;
+        min-width: 100px; /* Ensure a minimum size */
+        min-height: 100px;
         border-radius: 12px;
     }
     .option span {
-        font-size: 1.5rem;
+        font-size: 1.6rem; /* Adjusted for readability on smaller options */
     }
     .option:hover span {
-        font-size: 1.7rem;
+        font-size: 1.8rem;
     }
     #startButton {
-        padding: 0.8rem 1.5rem;
-        font-size: 1.2rem;
+        padding: 0.9rem 1.8rem;
+        font-size: 1.3rem;
         margin-top: 1.5rem;
     }
     .volume-controls {
@@ -574,57 +767,92 @@ footer {
         gap: 1rem;
     }
     #preCountdown {
-        font-size: 4rem;
+        font-size: 4.5rem;
     }
     #countdown {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
     #doneMessage {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
     #infoContent {
-        padding: 1.5rem;
+        padding: 1.8rem;
     }
     #infoModal p {
-        font-size: 1rem;
+        font-size: 1.05rem;
     }
-    .page-content {
+    .page-content, .blog-container {
         padding: 1.5rem;
         margin: 1.5rem 1rem;
     }
-    .page-content h2 {
-        font-size: 1.8rem;
+    .page-content h2, .blog-container h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
     }
-    .page-content h3 {
-        font-size: 1.4rem;
+    .page-content h3, .blog-post h3 {
+        font-size: 1.6rem;
+        margin-top: 1.8rem;
+        margin-bottom: 0.8rem;
     }
-    .page-content p, .page-content ul, .page-content li {
+    .page-content p, .page-content ul, .page-content li,
+    .blog-post p, .blog-post ul, .blog-post li {
         font-size: 1rem;
+        line-height: 1.5;
+    }
+    .contact-form {
+        gap: 1rem;
+    }
+    .contact-form label {
+        font-size: 1rem;
+    }
+    .contact-form input, .contact-form textarea {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+    .contact-form button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1.1rem;
     }
 }
 
 @media (max-width: 480px) {
     h1 {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
+    }
+    .hero-section h1 {
+        font-size: 1.8rem;
+    }
+    .hero-section p {
+        font-size: 1rem;
     }
     .option {
-        width: 35vw;
-        height: 35vw;
-        min-width: 80px;
-        min-height: 80px;
+        width: 40vw; /* Even larger for very small screens */
+        height: 40vw;
+        min-width: 90px;
+        min-height: 90px;
     }
     .option span {
-        font-size: 1.2rem;
-    }
-    .option:hover span {
         font-size: 1.4rem;
     }
+    .option:hover span {
+        font-size: 1.6rem;
+    }
     #startButton {
-        padding: 0.7rem 1.2rem;
+        padding: 0.8rem 1.4rem;
         font-size: 1.1rem;
     }
-    .page-content {
+    .page-content, .blog-container {
         padding: 1rem;
         margin: 1rem 0.5rem;
+    }
+    .page-content h2, .blog-container h2 {
+        font-size: 1.6rem;
+    }
+    .page-content h3, .blog-post h3 {
+        font-size: 1.4rem;
+    }
+    .page-content p, .page-content ul, .page-content li,
+    .blog-post p, .blog-post ul, .blog-post li {
+        font-size: 0.95rem; /* Smallest font size for smallest screens */
     }
 }
