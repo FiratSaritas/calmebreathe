@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt - BGE Jahr</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Specific styles for contact page to integrate with main design */
+        body {
+            background: linear-gradient(to bottom, #e6f0ff, #f8f9fa);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            margin: 0;
+            padding-top: 80px; /* Adjust for fixed header */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 700px;
+            width: 100%;
+            padding: 2em;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin: 30px auto;
+            box-sizing: border-box;
+        }
+        h1, h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        p, ul {
+            margin-bottom: 1em;
+            font-size: 1.05em;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        ul li i {
+            font-size: 1.5em;
+            color: var(--secondary-color);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        form label {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        form input[type="text"],
+        form input[type="email"],
+        form textarea {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            width: 100%;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        form input[type="text"]:focus,
+        form input[type="email"]:focus,
+        form textarea:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(240, 180, 0, 0.2);
+        }
+        form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        form button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            align-self: flex-start;
+        }
+        form button:hover {
+            background-color: #1a3a5f;
+            transform: translateY(-2px);
+        }
+        .imprint {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 1em;
+            font-size: 0.9em;
+            background-color: #efefef;
+            margin-top: auto; /* Pushes footer to the bottom */
+        }
+
+        /* Basic header for navigation, similar to main page */
+        header {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color), #1a3a5f);
+            padding: 15px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            box-sizing: border-box;
+            color: white;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo a {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        header nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            header nav ul {
+                margin-top: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            body {
+                padding-top: 120px; /* More space for stacked header */
+            }
+        }
+    </style>
+</head>
+<body>
+        <header>
+        <div class="logo">
+            <a href="/">BGE Jahr</a>
+        </div>
+        
+<nav>
+    <ul>
+        <li><a href="/">Startseite</a></li>
+        <li><a href="/info/">Informationen</a></li>
+        <li><a href="/about/">Über uns</a></li>
+        <li><a href="/privacy/">Datenschutz</a></li>
+        <li><a href="/terms/">Nutzungsbedingungen</a></li>
+        <li><a href="/contact/">Kontakt</a></li>
+    </ul>
+</nav>
+
+    </header>
+
+    <div class="container">
+        <h1>Kontakt</h1>
+
+        <p>Wir freuen uns über Ihr Interesse und sind jederzeit für Ihre Fragen, Anregungen oder Rückmeldungen erreichbar. Bitte zögern Sie nicht, uns zu kontaktieren.</p>
+
+        <h2>Kontaktdaten</h2>
+        <ul>
+            <li><i class="fas fa-envelope"></i> E-Mail: <a href="mailto:minimibigmac@gmail.com">minimibigmac@gmail.com</a></li>
+            <li><i class="fas fa-globe"></i> Webseite: bgejahr.ch</li>
+            <li><i class="fas fa-map-marker-alt"></i> Adresse: 8000 Zürich, Schweiz</li>
+        </ul>
+
+        <h2>Schreiben Sie uns eine Nachricht</h2>
+        <p>Nutzen Sie das folgende Formular, um uns direkt eine Nachricht zu senden. Wir werden uns so schnell wie möglich bei Ihnen melden.</p>
+        
+        <form action="#" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">E-Mail:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="subject">Betreff:</label>
+            <input type="text" id="subject" name="subject">
+
+            <label for="message">Ihre Nachricht:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Nachricht senden</button>
+        </form>
+
+        <div class="imprint">
+            <h2>Impressum</h2>
+            <p>Verantwortlich für den Inhalt dieser Seite:</p>
+            <p><strong>BGE Jahr</strong><br>
+            bgejahr.ch<br>
+            8000 Zürich, Schweiz<br>
+            E-Mail: <a href="mailto:minimibigmac@gmail.com">minimibigmac@gmail.com</a></p>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 BGE Jahr. Alle Rechte vorbehalten.
+    </footer>
+</body>
+</html>

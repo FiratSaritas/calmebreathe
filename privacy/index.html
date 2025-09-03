@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenschutzerklärung - BGE Jahr</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Specific styles for privacy page to integrate with main design */
+        body {
+            background: linear-gradient(to bottom, #e6f0ff, #f8f9fa);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            margin: 0;
+            padding-top: 80px; /* Adjust for fixed header */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            padding: 2em;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin: 30px auto;
+            box-sizing: border-box;
+        }
+        h1, h2, h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h2 {
+            font-size: 1.8em;
+        }
+        h3 {
+            font-size: 1.4em;
+        }
+        p, ul, ol {
+            margin-bottom: 1em;
+            font-size: 1.05em;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 0.5em;
+        }
+        strong {
+            color: var(--primary-color);
+        }
+        .last-updated {
+            text-align: right;
+            font-style: italic;
+            color: #777;
+            margin-top: 30px;
+            font-size: 0.9em;
+        }
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 1em;
+            font-size: 0.9em;
+            background-color: #efefef;
+            margin-top: auto; /* Pushes footer to the bottom */
+        }
+
+        /* Basic header for navigation, similar to main page */
+        header {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color), #1a3a5f);
+            padding: 15px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            box-sizing: border-box;
+            color: white;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo a {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        header nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            header nav ul {
+                margin-top: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            body {
+                padding-top: 120px; /* More space for stacked header */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="/">BGE Jahr</a>
+        </div>
+        
+<nav>
+    <ul>
+        <li><a href="/">Startseite</a></li>
+        <li><a href="/info/">Informationen</a></li>
+        <li><a href="/about/">Über uns</a></li>
+        <li><a href="/privacy/">Datenschutz</a></li>
+        <li><a href="/terms/">Nutzungsbedingungen</a></li>
+        <li><a href="/contact/">Kontakt</a></li>
+    </ul>
+</nav>
+
+    </header>
+
+    <div class="container">
+        <h1>Datenschutzerklärung</h1>
+
+        <p>Wir freuen uns über Ihr Interesse an unserer Webseite. Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. Nachfolgend informieren wir Sie ausführlich über den Umgang mit Ihren Daten.</p>
+
+        <h2>1. Verantwortliche Stelle</h2>
+        <p>BGE Jahr<br>
+        minimibigmac@gmail.com</p>
+
+        <h2>2. Erfassung und Verarbeitung von Daten</h2>
+        <p>Unsere Webseite ist so konzipiert, dass sie ohne die Erfassung personenbezogener Daten genutzt werden kann. Wir sammeln oder speichern keine Informationen, die Rückschlüsse auf Ihre Person zulassen.</p>
+
+        <h3>2.1. Server-Logfiles</h3>
+        <p>Der Provider der Seiten erhebt und speichert automatisch Informationen in sogenannten Server-Logfiles, die Ihr Browser automatisch an uns übermittelt. Dies sind:</p>
+        <ul>
+            <li>Browsertyp und Browserversion</li>
+            <li>verwendetes Betriebssystem</li>
+            <li>Referrer URL (die zuvor besuchte Seite)</li>
+            <li>Hostname des zugreifenden Rechners</li>
+            <li>Uhrzeit der Serveranfrage</li>
+            <li>IP-Adresse (anonymisiert)</li>
+        </ul>
+        <p>Diese Daten sind nicht bestimmten Personen zuordenbar. Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die Erfassung dieser Daten erfolgt aufgrund unseres berechtigten Interesses gemäß Art. 6 Abs. 1 lit. f DSGVO an der Stabilität und Sicherheit unserer Webseite sowie zur statistischen Auswertung der Nutzung. Die Daten werden nach spätestens 7 Tagen gelöscht.</p>
+
+        <h2>3. Cookies</h2>
+        <p>Unsere Webseite verwendet keine Cookies. Es werden keine Informationen auf Ihrem Gerät gespeichert, die Ihr Surfverhalten verfolgen oder analysieren könnten.</p>
+
+        <h2>4. Analysedienste und Tracking</h2>
+        <p>Wir nutzen keine Analysedienste (wie Google Analytics) oder Tracking-Technologien auf dieser Webseite. Ihre Nutzung wird nicht erfasst oder ausgewertet.</p>
+
+        <h2>5. Einbindung von Diensten und Inhalten Dritter</h2>
+        <p>Zur Darstellung bestimmter Funktionen (z.B. Font Awesome Icons, Chart.js für Diagramme) nutzen wir externe Skripte, die von Drittanbietern gehostet werden. Dabei handelt es sich um:</p>
+        <ul>
+            <li><strong>Font Awesome:</strong> Für Icons (CDNJS)</li>
+            <li><strong>Chart.js:</strong> Für Diagramme (CDNJS)</li>
+            <li><strong>jQuery:</strong> Für interaktive Elemente (Code.jquery.com)</li>
+            <li><strong>Google AdSense:</strong> (Optional, wenn aktiviert) Google AdSense ist ein Dienst zum Einbinden von Werbeanzeigen. Google verwendet Cookies und Web Beacons (unsichtbare Grafiken), um Informationen wie den Besucherverkehr auf der Seite auszuwerten. Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Webseite (einschließlich Ihrer IP-Adresse) werden an einen Server von Google in den USA übertragen und dort gespeichert. Diese Informationen können von Google an Vertragspartner von Google weitergegeben werden. Google wird Ihre IP-Adresse jedoch nicht mit anderen von Ihnen gespeicherten Daten in Verbindung bringen. Sie können die Installation der Cookies durch eine entsprechende Einstellung Ihrer Browser Software verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen dieser Webseite vollumfänglich nutzen können. Durch die Nutzung dieser Webseite erklären Sie sich mit der Bearbeitung der über Sie erhobenen Daten durch Google in der zuvor beschriebenen Art und Weise und zu dem zuvor benannten Zweck einverstanden.</li>
+        </ul>
+        <p>Beim Aufruf dieser externen Ressourcen ist es technisch notwendig, dass Ihre IP-Adresse an die jeweiligen Anbieter übermittelt wird, da sie die Inhalte an Ihren Browser senden müssen. Wir haben keinen Einfluss darauf, ob und wie diese Drittanbieter Ihre IP-Adresse für statistische Zwecke speichern oder verarbeiten. Bitte beachten Sie die jeweiligen Datenschutzerklärungen der Anbieter:</p>
+        <ul>
+            <li><a href="https://www.google.com/policies/privacy/" target="_blank">Datenschutzerklärung Google (AdSense)</a></li>
+            <li><a href="https://www.cloudflare.com/privacypolicy/" target="_blank">Datenschutzerklärung Cloudflare (CDNJS)</a></li>
+            <li><a href="https://openjsf.org/wp-content/uploads/sites/49/2020/09/OpenJS-Foundation-Privacy-Policy-2020-09-02.pdf" target="_blank">Datenschutzerklärung OpenJS Foundation (jQuery)</a></li>
+        </ul>
+
+        <h2>6. Ihre Rechte</h2>
+        <p>Da wir keine personenbezogenen Daten von Ihnen verarbeiten, ergeben sich in Bezug auf die Datenschutz-Grundverordnung (DSGVO) keine spezifischen Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch gegen die Verarbeitung Ihrer Daten.</p>
+
+        <h2>7. Änderungen dieser Datenschutzerklärung</h2>
+        <p>Wir behalten uns das Recht vor, diese Datenschutzerklärung jederzeit mit Wirkung für die Zukunft zu ändern. Eine jeweils aktuelle Version ist auf unserer Webseite verfügbar. Bitte informieren Sie sich regelmäßig über den Inhalt der Datenschutzerklärung.</p>
+
+        <p class="last-updated">Stand: 16. Juni 2025</p>
+    </div>
+
+    <footer>
+        &copy; 2025 BGE Jahr. Alle Rechte vorbehalten.
+    </footer>
+</body>
+</html>

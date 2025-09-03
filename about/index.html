@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Über uns - BGE Jahr</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Specific styles for about page to integrate with main design */
+        body {
+            background: linear-gradient(to bottom, #e6f0ff, #f8f9fa);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            margin: 0;
+            padding-top: 80px; /* Adjust for fixed header */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            padding: 2em;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin: 30px auto;
+            box-sizing: border-box;
+        }
+        h1, h2, h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h2 {
+            font-size: 1.8em;
+        }
+        p, ul, ol {
+            margin-bottom: 1em;
+            font-size: 1.05em;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 0.5em;
+        }
+        strong {
+            color: var(--primary-color);
+        }
+        .vision-section {
+            background-color: #f0f8ff;
+            border-left: 5px solid var(--secondary-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        .vision-section h3 {
+            border-bottom: none;
+            color: var(--secondary-color);
+            margin-top: 0;
+        }
+        .support-section {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #fcf8e3; /* Light yellow background */
+            border-left: 5px solid #f0b400; /* Accent color */
+            border-radius: 8px;
+        }
+        .support-section h3 {
+            color: var(--primary-color);
+            border-bottom: none;
+            margin-top: 0;
+        }
+        .buy-me-a-coffee-btn {
+            display: inline-block;
+            background-color: #FFDD00; /* Buy Me A Coffee brand yellow */
+            color: #000000;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 15px;
+            transition: background-color 0.3s ease, transform 0.2s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: fit-content;
+        }
+        .buy-me-a-coffee-btn:hover {
+            background-color: #FFDD44;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+        .buy-me-a-coffee-btn i {
+            color: #000000; /* Icon color */
+        }
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 1em;
+            font-size: 0.9em;
+            background-color: #efefef;
+            margin-top: auto; /* Pushes footer to the bottom */
+        }
+
+        /* Basic header for navigation, similar to main page */
+        header {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color), #1a3a5f);
+            padding: 15px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            box-sizing: border-box;
+            color: white;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo a {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        header nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            header nav ul {
+                margin-top: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            body {
+                padding-top: 120px; /* More space for stacked header */
+            }
+        }
+    </style>
+</head>
+<body>
+        <header>
+        <div class="logo">
+            <a href="/">BGE Jahr</a>
+        </div>
+        
+<nav>
+    <ul>
+        <li><a href="/">Startseite</a></li>
+        <li><a href="/info/">Informationen</a></li>
+        <li><a href="/about/">Über uns</a></li>
+        <li><a href="/privacy/">Datenschutz</a></li>
+        <li><a href="/terms/">Nutzungsbedingungen</a></li>
+        <li><a href="/contact/">Kontakt</a></li>
+    </ul>
+</nav>
+
+    </header>
+
+    <div class="container">
+        <h1>Über BGE Jahr</h1>
+
+        <p>Willkommen bei BGE Jahr, Ihrer intuitiven Online-Ressource für die schnelle Zuordnung von Jahren und Bandnummern der amtlichen Sammlung der Entscheidungen des Schweizerischen Bundesgerichts (BGE).</p>
+
+        <h2>Unsere Mission</h2>
+        <p>Die schweizerische Rechtsprechung, insbesondere die Bundesgerichtsentscheide, ist eine komplexe und umfangreiche Materie. Unser Ziel ist es, den Zugang zu dieser wichtigen Informationsquelle zu vereinfachen. Mit BGE Jahr möchten wir Jurist:innen, Studierenden und allen Interessierten ein praktisches Werkzeug an die Hand geben, um schnell und effizient die korrekte Bandnummer zu einem bestimmten Jahr (oder umgekehrt) zu finden.</p>
+        <p>Wir glauben, dass der Zugang zu Rechtsinformationen so unkompliziert wie möglich sein sollte, um Forschung, Studium und die tägliche Arbeit im juristischen Bereich zu erleichtern.</p>
+
+        <div class="vision-section">
+            <h3>Unsere Vision</h3>
+            <p>Wir streben danach, die bevorzugte Anlaufstelle für die grundlegende Navigation in der BGE-Sammlung zu werden. Durch kontinuierliche Pflege und einfache Bedienbarkeit wollen wir sicherstellen, dass unsere Plattform stets aktuell und nützlich bleibt.</p>
+        </div>
+
+        <h2>Was wir bieten</h2>
+        <ul>
+            <li><strong>Schnelle Suche:</strong> Finden Sie im Handumdrehen die korrespondierende Band- oder Jahreszahl.</li>
+            <li><strong>Umfassende Daten:</strong> Eine vollständige Liste der BGE-Jahre und Bände seit 1875.</li>
+            <li><strong>Zusätzliche Informationen:</strong> Eine Einführung in die Struktur der BGE, Zitierweisen und die Bedeutung der Entscheidungen.</li>
+            <li><strong>Statistische Übersicht:</strong> Grundlegende Zahlen zur Entwicklung der BGE-Veröffentlichungen.</li>
+        </ul>
+
+        <h2>Wer steckt dahinter?</h2>
+        <p>BGE Jahr wurde aus der Notwendigkeit heraus entwickelt, einen einfachen und präzisen Konverter für BGE-Jahre und -Bände zu schaffen. Als unabhängiges Projekt legen wir Wert auf Genauigkeit und Benutzerfreundlichkeit. Wir sind keine offizielle Stelle des Bundesgerichts, sondern eine private Initiative, die sich der Bereitstellung nützlicher juristischer Hilfsmittel verschrieben hat.</p>
+
+        <div class="support-section">
+            <h3>Ihre Unterstützung</h3>
+            <p>Wenn Ihnen BGE Jahr nützlich ist und Sie unsere Arbeit wertschätzen, freuen wir uns über Ihre Unterstützung. Jeder kleine Beitrag hilft uns, die Webseite zu pflegen, weiterzuentwickeln und die Serverkosten zu decken. Sie können uns einen Kaffee spendieren über:</p>
+            <a href="https://www.buymeacoffee.com/atlassa" target="_blank" class="buy-me-a-coffee-btn">
+                <i class="fas fa-coffee"></i> Unterstützen Sie uns auf Buy Me a Coffee!
+            </a>
+            <p style="font-size: 0.9em; margin-top: 10px;">Vielen Dank für Ihre Grosszügigkeit!</p>
+        </div>
+
+        <h2>Feedback</h2>
+        <p>Ihre Meinung ist uns wichtig! Sollten Sie Anregungen, Verbesserungsvorschläge oder Fehler bemerken, kontaktieren Sie uns bitte über unser <a href="/contact/">Kontaktformular</a> oder direkt per E-Mail. Ihr Feedback hilft uns, BGE Jahr stetig zu verbessern.</p>
+
+        <p style="text-align: center; margin-top: 30px;">Vielen Dank für Ihren Besuch!</p>
+    </div>
+
+    <footer>
+        &copy; 2025 BGE Jahr. Alle Rechte vorbehalten.
+    </footer>
+</body>
+</html>
